@@ -1,7 +1,8 @@
+import { sort } from 'core-js/fn/array'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Sort from '../views/Sort.vue'
 import Cakeindex from '../views/Cakeindex.vue'
-import Cakesort from '../views/Cakesort.vue'
 
 Vue.use(VueRouter)
 
@@ -12,8 +13,8 @@ const routes = [
     component: Cakeindex
   },{
     path: '/',
-    name: 'Cakesort',
-    component: Cakesort
+    name: 'sort',
+    component: Sort
   }
   // {
   //   path: '/about',

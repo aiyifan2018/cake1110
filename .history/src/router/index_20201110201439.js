@@ -1,19 +1,19 @@
+import { sort } from 'core-js/fn/array'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Cakeindex from '../views/Cakeindex.vue'
-import Cakesort from '../views/Cakesort.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Cakeindex',
-    component: Cakeindex
+    name: 'Home',
+    component: Home
   },{
     path: '/',
-    name: 'Cakesort',
-    component: Cakesort
+    name: 'sort',
+    component: sort
   }
   // {
   //   path: '/about',

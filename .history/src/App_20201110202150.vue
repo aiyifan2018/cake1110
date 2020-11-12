@@ -5,7 +5,7 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view/> -->
-    <Cakeindex></Cakeindex>
+    <Cake-index></Cake-index>
   </div>
 </template>
 <script>
