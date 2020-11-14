@@ -1,6 +1,6 @@
 <template>
     <div>
-        hfghfhffghfghfghfhfh
+        分类页面
     </div>
 </template>
 <script>
