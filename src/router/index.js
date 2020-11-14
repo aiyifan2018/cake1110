@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
+import CakeCart from '../views/CakeCart.vue'
+import Mine from '../views/Mine.vue'
 
 Vue.use(VueRouter)
 
@@ -11,9 +13,21 @@ const routes = [
     name: 'Cakeindex',
     component: Cakeindex
   },{
+    path: '/cakeindex',
+    name: 'Cakeindex',
+    component: Cakeindex
+  },{
     path: '/cakesort',
     name: 'Cakesort',
     component: Cakesort
+  },{
+    path: '/cakecart',
+    name: 'CakeCart',
+    component: CakeCart
+  },{
+    path: '/mine',
+    name: 'Mine',
+    component: Mine
   }
   // {
   //   path: '/about',
