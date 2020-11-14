@@ -7,7 +7,7 @@
     <router-view/> -->
     <!-- <Cakeindex></Cakeindex> -->
     <router-view/>
-      <mt-tabbar v-model="selected">
+      <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="index">首页
         <img
           src="./assets/image/index_enabled.png"
