@@ -11,7 +11,7 @@ const routes = [
     name: 'Cakeindex',
     component: Cakeindex
   },{
-    path: '/',
+    path: '/cakesort',
     name: 'Cakesort',
     component: Cakesort
   }
