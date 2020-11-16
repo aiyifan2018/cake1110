@@ -4,6 +4,7 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
+import Search from '../components/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,10 @@ const routes = [
     path: '/mine',
     name: 'Mine',
     component: Mine
+  },{
+    path: '/search',
+    name: 'Search',
+    component: Search
   }
   // {
   //   path: '/about',

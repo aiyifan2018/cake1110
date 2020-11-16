@@ -8,7 +8,7 @@
         </select>
       </div>
       <div id="search" slot="right">
-        <router-link to="/" class="shortcut">
+        <router-link to="/search" class="shortcut">
           <!-- <mt-search placeholder="搜索你喜欢的蛋糕" readonly></mt-search> -->
           <input type="text" placeholder="搜索你喜欢的蛋糕" />
         </router-link>
