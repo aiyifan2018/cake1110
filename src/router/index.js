@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Cakeindex from '../views/Cakeindex.vue'
-import Cakesort from '../views/Cakesort.vue'
+import CakeSort from '../views/CakeSort.vue'
+import CakeList from '../views/CakeList.vue'
+
 
 Vue.use(VueRouter)
 
@@ -11,18 +13,14 @@ const routes = [
     name: 'Cakeindex',
     component: Cakeindex
   },{
-    path: '/',
+    path: '/cakesort',
     name: 'Cakesort',
-    component: Cakesort
-  }
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  // }
+    component: CakeSort
+  },{
+    path:'/cakelist',
+    component:CakeList
+  },
+  
 ]
 
 const router = new VueRouter({
