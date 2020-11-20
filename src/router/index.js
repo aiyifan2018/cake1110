@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Cakeindex from '../views/Cakeindex.vue'
-<<<<<<< HEAD
-import CakeSort from '../views/CakeSort.vue'
-import CakeList from '../views/CakeList.vue'
-
-=======
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
+import Me from '../views/Me.vue'
 import Search from '../components/Search.vue'
->>>>>>> d13900916c285b685f87ceda9e03058087538ffa
+import CakeList from '../views/CakeList.vue'
 
 Vue.use(VueRouter)
 
@@ -20,16 +16,6 @@ const routes = [
     name: 'Cakeindex',
     component: Cakeindex
   },{
-<<<<<<< HEAD
-    path: '/cakesort',
-    name: 'Cakesort',
-    component: CakeSort
-  },{
-    path:'/cakelist',
-    component:CakeList
-  },
-  
-=======
     path: '/cakeindex',
     name: 'Cakeindex',
     component: Cakeindex
@@ -49,6 +35,12 @@ const routes = [
     path: '/search',
     name: 'Search',
     component: Search
+  },{
+    path:'/cakelist',
+    component:CakeList
+  },{
+    path:'/me',
+    component:Me
   }
   // {
   //   path: '/about',
@@ -58,7 +50,6 @@ const routes = [
   //   // which is lazy-loaded when the route is visited.
   //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   // }
->>>>>>> d13900916c285b685f87ceda9e03058087538ffa
 ]
 
 const router = new VueRouter({

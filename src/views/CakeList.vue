@@ -1,7 +1,7 @@
 <template>
   <div class="cakelist">
     <!-- 顶部导航栏开始 -->
-    <mt-header title="热门蛋糕" fixed class="myHeader">
+    <mt-header :title="headerTitle" fixed class="myHeader">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
@@ -53,6 +53,7 @@
 export default {
   data() {
     return {
+      headerTitle:"热门蛋糕",
       active:"complete",
       page:1,
       loading:false,
@@ -61,14 +62,14 @@ export default {
     }
   },
   methods: {
-    // 封装axios请求list接口的代码
+    // 封装axios请求list接口的代码loadList()
     loadList(active,page){
-      this.indicator.open();
+      this.$indicator.open("加载中");
       this.loading=true;
       this.axios.get('/list?cid='+active+'&page='+page).then(res=>{
         this.cakelist=res.data.results;
         this.pagecount=res.data.pagecount;
-        this.indicator.close();
+        this.$indicator.close();
         this.loading=false;
       });
     },
