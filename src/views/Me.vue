@@ -1,12 +1,12 @@
 <template>
   <div>   
-    <div>
+    <div class="backtop">
       <router-link to="/" class="routerLink">
         <img src="../../public/img/index_enabled.png" alt="">
       </router-link><br>
       <mt-button type="danger" size="small" class="relogin">登录/注册</mt-button>
     </div>
-    <div>
+    
       <div class="orders">
         我的订单
         <router-link to="/" class="order">
@@ -15,8 +15,7 @@
       </div>
       <ul class="payment">
         <li><img src="../../public/img/index_enabled.png" slot="icon">
-          <p>待付款</p>
-          
+          <p>待付款</p>  
         </li>
         <li>
           <img src="../../public/img/index_enabled.png" slot="icon">
@@ -24,13 +23,12 @@
         </li>
         <li>
           <img src="../../public/img/index_enabled.png" slot="icon">
-          <p>待评价</p>
-          
+          <p>待评价</p>  
         </li>
       </ul>
-    </div>
-    <ul>
-      <li class="about">
+  
+    <ul class="about">
+      <li>
         <router-link to="/">
           <img src="../../public/img/index_enabled.png">
           优惠劵
@@ -64,27 +62,40 @@
   </div>
 </template>
 <style scoped>
+  .backtop{
+    background: url(../../public/img/background.svg);
+  }
   .routerLink{
+    margin-top: 10px;
+    margin-right: 10px;
     float: right;
   }
   .relogin{
     display: block;
-    margin: 20px auto;
+    margin: 50px auto;
+    text-align: center;
+  }
+  .about{
+    margin-top: 20px;
   }
   .orders{
     border-bottom: 1px solid #000;
-    padding: 10px 5px;
+    padding: 10px 15px;
   }
+  
   .order{
     float: right;
     text-decoration: none;
     color: #000;
   }
-  ul{
-    
-  }
+   
   ul>li{  
     list-style: none;
+    
+  }
+  .payment>li{
+    text-align: center;
+    margin-left: 100px;
   }
   .payment{
     display: flex;
@@ -93,7 +104,10 @@
     float: left;
     margin: 0 25px;
   }
-  .about>a{
+  .about>li>a{
+    
     list-style: none;
+    text-decoration: none;
   }
+  
 </style>
