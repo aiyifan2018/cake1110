@@ -4,10 +4,15 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
+import Me from '../views/Me.vue'
 import Search from '../components/Search.vue'
+
 import Me from '../views/Me.vue'
 import Login from '../views/Login.vue'
 import Reight from '../views/Reight.vue'
+
+import CakeList from '../views/CakeList.vue'
+
 
 Vue.use(VueRouter)
 
@@ -48,6 +53,10 @@ const routes = [
   {
     path: '/reight',
     component: Reight
+
+  },{
+    path:'/cakelist',
+    component:CakeList
   }
   // {
   //   path: '/about',
