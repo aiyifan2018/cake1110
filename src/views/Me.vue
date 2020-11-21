@@ -4,7 +4,9 @@
       <router-link to="/" class="routerLink">
         <img src="../../public/img/icons/setup.png" alt="">
       </router-link><br>
-      <mt-button type="danger"   class="relogin">登录/注册</mt-button>
+      <router-link to="/reight">
+        <mt-button type="danger"   class="relogin">登录/注册</mt-button>
+      </router-link>
     </div>
     <div class="ordermain">
       <div class="orders" >
@@ -66,6 +68,7 @@
 </template>
 <style scoped>
 a{
+  text-decoration: none;
   color: #000 !important;
 }
 .hrs{

@@ -64,18 +64,19 @@
       }
     }
   }
-</script>
-<style>
-#app {
+//   <style>
+// #app {
  
-  color: #2c3e50;
-}
-body{
-  margin: 0;
-  padding: 0;
-}
-.mint-tab-item-icon img{
-  width: 24px;
-  height: 24px;
-}
-</style>
+//   color: #2c3e50;
+// }
+// body{
+//   margin: 0;
+//   padding: 0;
+// }
+// .mint-tab-item-icon img{
+//   width: 24px;
+//   height: 24px;
+// }
+// </style>
+</script>
+
