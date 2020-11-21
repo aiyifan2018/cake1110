@@ -7,7 +7,7 @@ import Mine from '../views/Mine.vue'
 import Me from '../views/Me.vue'
 import Search from '../components/Search.vue'
 
-import Me from '../views/Me.vue'
+ 
 import Login from '../views/Login.vue'
 import Reight from '../views/Reight.vue'
 
@@ -36,16 +36,13 @@ const routes = [
   },{
     path: '/mine',
     name: 'Mine',
-    component: Mine
+    component: Me
   },{
     path: '/search',
     name: 'Search',
     component: Search
   },
-  {
-    path: '/me',
-    component: Me
-  },
+  
   {
     path: '/login',
     component: Login
