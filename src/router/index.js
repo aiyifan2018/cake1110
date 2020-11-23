@@ -6,6 +6,8 @@ import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
 import Search from '../components/Search.vue'
 import Me from '../views/Me.vue'
+import Login from '../views/Login.vue'
+import Reight from '../views/Reight.vue'
 
 Vue.use(VueRouter)
 
@@ -38,6 +40,14 @@ const routes = [
   {
     path: '/me',
     component: Me
+  },
+  {
+    path: '/login',
+    component: Login
+  },
+  {
+    path: '/reight',
+    component: Reight
   }
   // {
   //   path: '/about',
