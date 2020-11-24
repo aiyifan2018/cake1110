@@ -1,13 +1,15 @@
-<template>
-  <div id="app">
+ <template>
+  <div id="app"> 
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
-    <!-- <Cakeindex></Cakeindex> -->
-    <router-view/>
-      <mt-tabbar v-model="selected" fixed>
+    </div>-->
+    <router-view>
+      <Cakeindex></Cakeindex>
+    </router-view>
+      
+    
+      <!-- <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="index">首页
         <img
           src="./assets/image/index_enabled.png"
@@ -41,9 +43,10 @@
         <img src="./assets/image/me_disabled.png" v-else slot="icon" />
       </mt-tab-item>
     </mt-tabbar>
+  </div>-->
   </div>
 </template>
-<script>
+<!--<script>
   export default{
     data(){
       return {
@@ -62,9 +65,9 @@
           this.$router.push('/cakeindex')
         }
       }
-    }
-  }
-//   <style>
+    } -->
+  <!-- }  -->
+<!-- //   <style>
 // #app {
  
 //   color: #2c3e50;
@@ -92,4 +95,4 @@ body{
   height: 24px;
 }
 </style>
-
+ -->
