@@ -1,14 +1,23 @@
 <template>
   <div>
+
     <router-link to="/" class="return">
       <img src="../../public/img/icons/return.png" >
     </router-link>
+
 
     <div class="title">
       蛋糕来了
     </div>
     <mt-field
       type="text"
+
+
+
+
+
+
+
       placeholder="请输入邮箱或手机号"
       :attr="{maxlength:16}"
       v-model="uname"
@@ -35,9 +44,9 @@
   </div>
 </template>
 
-
 <style scoped>
- .return{
+
+  .return{
     display: inline;
     margin-left: 2px;
   }
@@ -84,6 +93,7 @@
   }
 </style>
 <script>
+<<<<<<< HEAD
   export default {
   data(){
     return {
@@ -134,4 +144,71 @@
 
 
   }
+=======
+
+// export default {
+//   data(){
+//     return {
+//       username:"",
+//       password:"",
+//       usernameState:"",
+//       passwordState:""
+//     }
+//   },
+
+//   methods:{
+//     checkUsername(){
+//       let usernameRegExp=/^[\u4e00-\u9fa50-9a-zA-Z]{6,16}$/;
+//       if(usernameRegExp.test(this.username)){
+//         this.usernameState="success";
+//         return true;
+//       }else{
+//         this.usernameState="error";
+//         this.$toast({
+//           message:"用户名为必填项",
+//           position:"top",
+//           duration:"3000"
+//         });
+//         return false;
+//       }
+//     },
+//     checkPasssword(){
+//       let passwordRegExp=/^[\u4e00-\u9fa50-9a-zA-Z]{6,16}$/;
+//       if(passwordRegExp.test(this.password)){
+//         this.passwordState="success";
+//         return true;
+//       }else{
+//         this.passwordState="error";
+//         this.$toast({
+//           message:"密码为数字、字母的组合体",
+//           position:"top",
+//           duration:"3000"
+//         });
+//         return false;
+//       }
+//     },
+    // handel(){
+      
+    //   if(this.checkUsername()&&this.checkPasssword()){
+    //     // let str="username="+this.username+"&password="+this.password
+    //     let obj={
+    //       username:this.username,
+    //       password:this.password
+    //     };
+    //     let str=this.qs.stringify(obj);
+    //     this.$store.dispatch("login_action",str)
+    //     // this.axios.post("/login",this.qs.stringify(obj)).then(res=>{
+    //     //   if(res.data.code==200){
+             
+    //     //     this.$store.commit("logined_mutations",res.data.userinfo)
+    //     //     this.$router.push("/");
+    //     //   }else{
+    //     //     this.$messagebox("登录提示","用户名或密码错误")
+    //     //   }
+    //     // })
+    //   }
+    // }
+  //}
+//}
+>>>>>>> 8f85a24f514e7e33a97eeaee75edbfc3cac17c46
 </script>

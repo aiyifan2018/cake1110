@@ -64,6 +64,37 @@
       }
     }
   }
+<<<<<<< HEAD
 
 </script>
+=======
+//   <style>
+// #app {
+ 
+//   color: #2c3e50;
+// }
+// body{
+//   margin: 0;
+//   padding: 0;
+// }
+// .mint-tab-item-icon img{
+//   width: 24px;
+//   height: 24px;
+// }
+// </style>
+</script>
+<style>
+#app {
+  color: #2c3e50;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+.mint-tab-item-icon img{
+  width: 24px;
+  height: 24px;
+}
+</style>
+>>>>>>> 8f85a24f514e7e33a97eeaee75edbfc3cac17c46
 
