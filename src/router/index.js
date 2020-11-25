@@ -4,20 +4,12 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
-import Me from '../views/Me.vue'
-<<<<<<< HEAD
 import Login from '../views/Login.vue'
-import Reight from '../views/Reight.vue'
-=======
+import Register from '../views/Register.vue'
 import Search from '../components/Search.vue'
-
- 
-import Login from '../views/Login.vue'
-import Reight from '../views/Reight.vue'
-
 import CakeList from '../views/CakeList.vue'
 
->>>>>>> 8f85a24f514e7e33a97eeaee75edbfc3cac17c46
+
 
 Vue.use(VueRouter)
 
@@ -41,34 +33,26 @@ const routes = [
   },{
     path: '/mine',
     name: 'Mine',
-    component: Me
+    component: Mine
   },{
     path: '/search',
     name: 'Search',
     component: Search
   },
-  
   {
-<<<<<<< HEAD
-    path: '/me',
-    component: Me
-  },
-  {
-=======
->>>>>>> 8f85a24f514e7e33a97eeaee75edbfc3cac17c46
+
     path: '/login',
     component: Login
   },
   {
-    path: '/reight',
-    component: Reight
-<<<<<<< HEAD
-=======
+    path: '/register',
+    component: Register
+
 
   },{
     path:'/cakelist',
     component:CakeList
->>>>>>> 8f85a24f514e7e33a97eeaee75edbfc3cac17c46
+
   }
   // {
   //   path: '/about',
