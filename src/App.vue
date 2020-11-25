@@ -1,12 +1,14 @@
-<template>
-  <div id="app">
+ <template>
+  <div id="app"> 
     <!-- <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-    </div>
-    <router-view/> -->
-    <!-- <Cakeindex></Cakeindex> -->
-    <router-view/>
+    </div>-->
+    <router-view>
+      <Cakeindex></Cakeindex>
+    </router-view>
+      
+    
       <!-- <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="index">首页
         <img
@@ -40,31 +42,32 @@
         />
         <img src="./assets/image/me_disabled.png" v-else slot="icon" />
       </mt-tab-item>
-    </mt-tabbar> -->
+    </mt-tabbar>
+  </div>-->
   </div>
 </template>
-// <script>
-//   export default{
-//     data(){
-//       return {
-//         selected: "index"
-//       }
-//     },
-//     watch:{
-//       selected(newV){
-//         if(newV=='sort'){
-//           this.$router.push('/cakesort')
-//         }else if(newV=='cart'){
-//           this.$router.push('/cakecart')
-//         }else if(newV=='me'){
-//           this.$router.push('/mine')
-//         }else{
-//           this.$router.push('/cakeindex')
-//         }
-//       }
-//     }
-//   }
-//   <style>
+<!--<script>
+  export default{
+    data(){
+      return {
+        selected: "index"
+      }
+    },
+    watch:{
+      selected(newV){
+        if(newV=='sort'){
+          this.$router.push('/cakesort')
+        }else if(newV=='cart'){
+          this.$router.push('/cakecart')
+        }else if(newV=='me'){
+          this.$router.push('/mine')
+        }else{
+          this.$router.push('/cakeindex')
+        }
+      }
+    } -->
+  <!-- }  -->
+<!-- //   <style>
 // #app {
  
 //   color: #2c3e50;
@@ -79,7 +82,6 @@
 // }
 // </style>
 </script>
-<!--
 <style>
 #app {
   color: #2c3e50;
@@ -93,4 +95,4 @@ body{
   height: 24px;
 }
 </style>
--->
+ -->
