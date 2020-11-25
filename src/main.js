@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import MintUi from 'mint-ui'
+import bus from './bus'
+
+Vue.prototype.bus=bus
 
 import 'mint-ui/lib/style.css'
 Vue.use(MintUi)

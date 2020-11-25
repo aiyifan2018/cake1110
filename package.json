@@ -11,8 +11,10 @@
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
     "mint-ui": "^2.2.13",
+    "v-touch": "^1.5.2",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vue-touch": "^2.0.0-beta.4",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

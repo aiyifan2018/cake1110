@@ -7,7 +7,7 @@
     <router-view/> -->
     <!-- <Cakeindex></Cakeindex> -->
     <router-view/>
-      <mt-tabbar v-model="selected" fixed>
+      <!-- <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="index">首页
         <img
           src="./assets/image/index_enabled.png"
@@ -40,30 +40,30 @@
         />
         <img src="./assets/image/me_disabled.png" v-else slot="icon" />
       </mt-tab-item>
-    </mt-tabbar>
+    </mt-tabbar> -->
   </div>
 </template>
-<script>
-  export default{
-    data(){
-      return {
-        selected: "index"
-      }
-    },
-    watch:{
-      selected(newV){
-        if(newV=='sort'){
-          this.$router.push('/cakesort')
-        }else if(newV=='cart'){
-          this.$router.push('/cakecart')
-        }else if(newV=='me'){
-          this.$router.push('/mine')
-        }else{
-          this.$router.push('/cakeindex')
-        }
-      }
-    }
-  }
+// <script>
+//   export default{
+//     data(){
+//       return {
+//         selected: "index"
+//       }
+//     },
+//     watch:{
+//       selected(newV){
+//         if(newV=='sort'){
+//           this.$router.push('/cakesort')
+//         }else if(newV=='cart'){
+//           this.$router.push('/cakecart')
+//         }else if(newV=='me'){
+//           this.$router.push('/mine')
+//         }else{
+//           this.$router.push('/cakeindex')
+//         }
+//       }
+//     }
+//   }
 //   <style>
 // #app {
  
@@ -79,6 +79,7 @@
 // }
 // </style>
 </script>
+<!--
 <style>
 #app {
   color: #2c3e50;
@@ -92,4 +93,4 @@ body{
   height: 24px;
 }
 </style>
-
+-->
