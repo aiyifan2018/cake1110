@@ -8,28 +8,24 @@
     <!-- 顶部选项卡结束 -->
     <!-- 轮播图部分开始 -->
     <mt-swipe :auto="2000" class="swipe">
-      <mt-swipe-item><img src="../assets/img/041.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/042.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/043.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/054.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/055.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/056.jpg" alt=""></mt-swipe-item>
-      <mt-swipe-item><img src="../assets/img/060.jpg" alt=""></mt-swipe-item>
+      <mt-swipe-item v-for="(item, index) in bannerImage" :key="index">
+        <img :src="require('../assets/img/'+item.pic)" alt="">
+      </mt-swipe-item>
     </mt-swipe>
     <div class="list">
-      <router-link to="/cakelist">热门蛋糕<img src="../assets/img/021.jpg" alt=""></router-link>
-      <router-link to="/cakelist">当日达<img src="../assets/img/050.jpg" alt=""></router-link>
-      <router-link to="/cakelist">全部<img src="../assets/img/019.jpg" alt=""></router-link>
+      <router-link to="/cakelist/热门蛋糕">热门蛋糕<img src="../assets/img/021.jpg" alt=""></router-link>
+      <router-link to="/cakelist/今日达">当日达<img src="../assets/img/050.jpg" alt=""></router-link>
+      <router-link to="/cakelist/全部">全部<img src="../assets/img/019.jpg" alt=""></router-link>
     </div>
     <!-- 轮播图部分结束 -->
     <!-- 品牌馆部分开始 -->
     <div class="brand">
       <h1>严选品牌馆</h1>
       <div>
-        <router-link to="/cakelist" v-for="(item, index) in brand" :key="index">
+        <router-link :to="`/cakelist/${item.bname}`" v-for="(item, index) in brand" :key="index">
           <img :src="require('../assets/brand/'+item.pic)" alt="">
         </router-link>
-        <router-link to="/cakelist">全国蛋糕</router-link>
+        <router-link to="/cakelist/蛋糕">全国蛋糕</router-link>
       </div>
     </div>
     <!-- 品牌馆部分结束 -->
@@ -37,9 +33,9 @@
     <div class="love">
       <h1>送给爱的人</h1>
       <div>
-        <router-link to="/cakelist"><img src="../assets/img/004.jpg" alt="">送恋人朋友</router-link>
-        <router-link to="/cakelist"><img src="../assets/img/5013003.jpg" alt="">长辈祝福</router-link>
-        <router-link to="/cakelist"><img src="../assets/img/5012002.jpg_220x240.jpg" alt="">送小朋友</router-link>
+        <router-link to="/cakelist/送恋人朋友蛋糕"><img src="../assets/img/004.jpg" alt="">送恋人朋友</router-link>
+        <router-link to="/cakelist/送老人"><img src="../assets/img/5013003.jpg" alt="">长辈祝福</router-link>
+        <router-link to="/cakelist/送儿童"><img src="../assets/img/5012002.jpg_220x240.jpg" alt="">送小朋友</router-link>
       </div>
     </div>
     <!-- 送给爱的人部分结束 -->
@@ -47,19 +43,19 @@
     <div class="flavor">
       <h1>口味随心挑 <router-link to="/cakesort">更多<i class="iconfont icon-xiangyou"></i></router-link></h1>
       <div>
-        <router-link to="/cakelist">
+        <router-link to="/cakelist/鲜奶蛋糕">
           <p>鲜奶蛋糕</p>
           <span>浓香奶味</span>
         </router-link>
-        <router-link to="/cakelist">
+        <router-link to="/cakelist/水果蛋糕">
           <p>水果蛋糕</p>
           <span>新鲜现切</span>             
         </router-link>
-        <router-link to="/cakelist">
+        <router-link to="/cakelist/慕斯蛋糕">
           <p>慕斯蛋糕</p>
           <span>细腻口感</span>              
         </router-link>
-        <router-link to="/cakelist">
+        <router-link to="/cakelist/巧克力蛋糕">
           <p>巧克力蛋糕</p>
           <span>纵享丝滑</span>
         </router-link>
@@ -70,13 +66,11 @@
     <div class="recommend">
       <h1>热销推荐蛋糕</h1>
       <div>
-        <router-link to="" v-for="(item, index) in cakedetails" :key="index">
+        <router-link :to="`/details/${item.did}`" v-for="(item, index) in cakedetails" :key="index">
           <ul>
-            <!-- <li><img src="../assets/img/001.jpg" alt=""></li> -->
             <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
             <li>{{item.dname}}</li>
-            <li>幸福西饼蛋糕 | 最快3小时送达</li>
-            <!-- <li>22222</li> -->
+            <li>{{item.bname}}蛋糕 | 最快{{item.arrival_time}}送达</li>
             <li>￥{{item.price}}</li>
           </ul>
         </router-link>
@@ -116,8 +110,8 @@
 <style>
     .cakeindex,.cakeindex a{color: #000;}
     /* 顶部选项卡样式 */
-    .cakeindex .mint-header{background-color: #fff;color: #ff6700;font-size: 32px;}
-    .cakeindex .mint-header span{font-size: 14px;}
+    .cakeindex .mint-header{background-color: #fff;color: #ff6700;font-size: 26px;}
+    .cakeindex .mint-header span{font-size: 14px;color: #000;}
     /* 轮播图的样式 */
     .cakeindex .swipe{ width: 100%; height: 300px;margin-top: 40px;}
     .cakeindex .swipe img{width: 100%;}
@@ -161,11 +155,11 @@
     /* 查看全部蛋糕连接的样式 */
     .cakeindex .recommend>a{display: block;width: 40%; border: 1px solid #000;padding: 8px 0;font-size: 14px;margin: 0 auto;text-align: center;}
     /* 回到顶部的样式 */
-    .cakeindex .backTop{position: fixed;top:75%;left: 80%;z-index: 99;}
+    .cakeindex .backTop{position: fixed;top:80%;left: 80%;z-index: 99;}
     /* 底部选项卡的样式 */
     .myTabbar .mint-tabbar{background-color: #eaeaea;}
     .myTabbar a{color: #8a8a8a;}
-    .myTabbar .mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700;}
+    .myTabbar.mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700;}
 </style>
 <script>
 export default {
@@ -175,18 +169,21 @@ export default {
       page:2,
       cakedetails:[],
       brand:[],
+      bannerImage:[],
     }
   },
   mounted() {
     // 发送获取蛋糕详情的请求
     this.axios.get('/details').then(res=>{
-      console.log(res.data.results);
       this.cakedetails=res.data.results;
     });
     // 发送获取品牌的请求
     this.axios.get('/brand').then(res=>{
-      console.log(res.data.results)
       this.brand=res.data.results;
+    });
+    // 发送请求获取轮播图
+    this.axios.get('/banner').then(res=>{
+      this.bannerImage=res.data.results;
     });
   },
 }

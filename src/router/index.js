@@ -52,10 +52,10 @@ const routes = [
     component: Reight
 
   },{
-    path:'/cakelist',
+    path:'/cakelist/:kw',
     component:CakeList
   },{
-    path:'/details',
+    path:'/details/:id',
     component:Details
   }
   // {

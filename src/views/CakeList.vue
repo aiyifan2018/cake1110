@@ -1,7 +1,7 @@
 <template>
   <div class="cakelist">
     <!-- 顶部导航栏开始 -->
-    <mt-header :title="headerTitle" fixed class="myHeader">
+    <mt-header :title="kw" fixed class="myHeader">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
@@ -10,21 +10,21 @@
     <!-- 顶部导航栏结束 -->
     <!-- 顶部选项卡开始 -->
     <mt-navbar v-model="active" fixed>
-      <mt-tab-item id="complete">综合</mt-tab-item>
-      <mt-tab-item id="sales">销量</mt-tab-item>
+      <mt-tab-item id="did">综合</mt-tab-item>
+      <mt-tab-item id="sales_count">销量</mt-tab-item>
       <mt-tab-item id="price">价格<img src="../assets/icon/价格.png" alt=""></mt-tab-item>
-      <mt-tab-item id="nice">最新</mt-tab-item>
+      <mt-tab-item id="add_time">最新</mt-tab-item>
     </mt-navbar>
     <!-- 顶部选项卡结束 -->
     <!-- 面板内容开始 -->
     <mt-tab-container class="main" v-infinite-scroll="loadMore" infinite-scroll-distance="10" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="true">
       <mt-tab-container-item>
-        <router-link to="/details" v-for="(item, index) in 20" :key="index">
+        <router-link to="/details" v-for="(item, index) in cakelist" :key="index">
           <ul>
-            <li><img src="../assets/img/042.jpg"></li>
-            <li>四重奏蛋糕(约2磅)</li>
-            <li>幸福西饼蛋糕 | 最快3小时送达</li>
-            <li>￥228</li>
+            <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
+            <li>{{item.dname}}(约2磅)</li>
+            <li>{{item.bname}}蛋糕 | 最快{{item.arrival_time}}送达</li>
+            <li>￥{{item.price}}</li>
           </ul>
         </router-link>        
       </mt-tab-container-item>
@@ -56,20 +56,21 @@
 export default {
   data() {
     return {
-      headerTitle:"热门蛋糕",
-      active:"complete",
+      kw:"",
+      active:"did",
       page:1,
       loading:false,
+      // 接受服务器传的数据
       cakelist:[],
       pagecount:1,
     }
   },
   methods: {
     // 封装axios请求list接口的代码loadList()
-    loadList(active,page){
+    loadList(kw,active){
       this.$indicator.open("加载中");
       this.loading=true;
-      this.axios.get('/list?cid='+active+'&page='+page).then(res=>{
+      this.axios.get('/search?kw='+kw+'&s='+active).then(res=>{
         this.cakelist=res.data.results;
         this.pagecount=res.data.pagecount;
         this.$indicator.close();
@@ -81,20 +82,24 @@ export default {
       // 每滚动一次页码加1
       // this.page++;
       // if(this.page<=this.pagecount){
-      //   this.loadList(this.active,this.page);
+      //   this.loadList(this.kw);
       // }
     }
   },
   watch: {
     // 监听顶部选项卡active变化，面板数据随之发生变化
-    // active(value){
-    //   this.cakelist=[];
-    //   this.loadList(value,this.page);
-    // }
+    active(value){
+      this.cakelist=[];
+      this.axios.get('/sales?kw='+this.kw+'&s='+value).then(res=>{
+        this.cakelist=res.data.results;
+      });
+    }
   },
   // 在页面初始化加载时发送请求获取页面数据
   mounted() {
-    // this.loadList(this.active,this.page);
+    // 获取地址栏中传过来的参数
+    this.kw=`${this.$route.params.kw}`;
+    this.loadList(this.kw,this.active);
   }, 
 }
 </script>
