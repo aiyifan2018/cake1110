@@ -8,6 +8,9 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Search from '../components/Search.vue'
 import CakeList from '../views/CakeList.vue'
+import Shoppingcart from '../views/Shoppingcart.vue'
+import Pay from '../views/pay.vue'
+import ok from '../views/ok.vue'
 
 
 
@@ -53,7 +56,20 @@ const routes = [
     path:'/cakelist/:kw',
     component:CakeList
 
+  },{
+     path:'/shoppingcart',
+     name:'Shoppingcart',
+     component:Shoppingcart
+  },{
+    path:'/ok',
+    name:'ok',
+    component:ok
+  },{
+    path:'/Pay',
+    name:'Pay',
+    component:Pay
   },
+
   // {
   //   path:'/details',
   //   component:Details

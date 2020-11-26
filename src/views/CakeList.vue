@@ -9,7 +9,7 @@
     </mt-header>
     <!-- 顶部导航栏结束 -->
     <!-- 顶部选项卡开始 -->
-    <mt-navbar v-model="active" fixed>
+    <mt-navbar v-model="activeUpdata" fixed>
       <mt-tab-item id="did">综合</mt-tab-item>
       <mt-tab-item id="sales_count">销量</mt-tab-item>
       <mt-tab-item id="price">价格<img src="../assets/icon/价格.png" alt=""></mt-tab-item>
@@ -18,7 +18,7 @@
     <!-- 顶部选项卡结束 -->
     <!-- 面板内容开始 -->
     <mt-tab-container class="main" v-infinite-scroll="loadMore" infinite-scroll-distance="10" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="true">
-      <mt-tab-container-item>
+      <mt-tab-container-item v-if="render">
         <router-link to="/details" v-for="(item, index) in cakelist" :key="index">
           <ul>
             <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
@@ -57,20 +57,21 @@ export default {
   data() {
     return {
       kw:"",
-      active:"did",
+      activeUpdata:"did",
       page:1,
       loading:false,
       // 接受服务器传的数据
-      cakelist:[],
       pagecount:1,
+      cakelist:[],
+      render: true 
     }
   },
   methods: {
     // 封装axios请求list接口的代码loadList()
-    loadList(kw,active){
+    loadList(kw,activeUpdata){
       this.$indicator.open("加载中");
       this.loading=true;
-      this.axios.get('/search?kw='+kw+'&s='+active).then(res=>{
+       this.axios.get('/sales?kw='+kw+'&s='+activeUpdata).then(res=>{
         this.cakelist=res.data.results;
         this.pagecount=res.data.pagecount;
         this.$indicator.close();
@@ -79,21 +80,24 @@ export default {
     },
     // 页面无限滚动时调用的函数loadMore
     loadMore(){
-      // 每滚动一次页码加1
-      // this.page++;
-      // if(this.page<=this.pagecount){
-      //   this.loadList(this.kw);
-      // }
+     
     }
   },
   watch: {
     // 监听顶部选项卡active变化，面板数据随之发生变化
-    active(value){
+    activeUpdata(value){
+      console.log(value)
       this.cakelist=[];
+      this.render = false
       this.axios.get('/sales?kw='+this.kw+'&s='+value).then(res=>{
         this.cakelist=res.data.results;
+        this.$nextTick(() => {
+          this.render = true
+          console.log("jiage",this.cakelist)
+          console.log(this.render)
+        })
       });
-    }
+    },
   },
   // 在页面初始化加载时发送请求获取页面数据
   mounted() {
