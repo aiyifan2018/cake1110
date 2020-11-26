@@ -199,7 +199,7 @@ CREATE TABLE sort(
   pic VARCHAR(32)
 );
 -- 插入数据
-INSERT INTO sort VALUES( 1,'鲜奶蛋糕','img/01.jpg');
+INSERT INTO sort VALUES( 1,'鲜奶蛋糕','img/001.jpg');
 INSERT INTO sort VALUES( 2,'水果蛋糕','img/006.jpg');
 INSERT INTO sort VALUES( 3,'巧克力蛋糕','img/019.jpg');
 INSERT INTO sort VALUES( 4,'慕斯蛋糕','img/062.jpg');

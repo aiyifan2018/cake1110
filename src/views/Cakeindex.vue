@@ -66,7 +66,7 @@
     <div class="recommend">
       <h1>热销推荐蛋糕</h1>
       <div>
-        <router-link :to="`/details/${item.did}`" v-for="(item, index) in cakedetails" :key="index">
+        <router-link :to="`/cakeDetails/${item.did}`" v-for="(item, index) in cakedetails" :key="index">
           <ul>
             <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
             <li>{{item.dname}}</li>
@@ -75,7 +75,7 @@
           </ul>
         </router-link>
       </div>
-      <router-link to="/cakelist">查看全部蛋糕<i class="iconfont icon-xiangyou"></i></router-link>
+      <router-link to="/cakelist/全部">查看全部蛋糕<i class="iconfont icon-xiangyou"></i></router-link>
     </div>
     <!-- 热销推荐蛋糕结束 -->
     <!-- 回到顶部开始 -->
@@ -96,12 +96,12 @@
       <mt-tab-item id="shopping">
         <img src="../assets/icon/shopping2.png" slot="icon" v-if="select=='shopping'">
         <img src="../assets/icon/shopping1.png" slot="icon" v-else>
-        <router-link to="/">购物车</router-link>
+        <router-link to="/shoppingcart/1">购物车</router-link>
       </mt-tab-item>
-      <mt-tab-item id="me">
+      <mt-tab-item id="mine">
         <img src="../assets/icon/me2.png" slot="icon" v-if="select=='me'">
         <img src="../assets/icon/me1.png" slot="icon" v-else>
-        <router-link to="/me">我的</router-link>
+        <router-link to="/mine">我的</router-link>
       </mt-tab-item>
     </mt-tabbar>
     <!-- 底部选项卡结束 -->

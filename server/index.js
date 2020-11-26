@@ -63,6 +63,40 @@ io.on('connection', socket => {
 	})
 });
 
+server.get('/cake',(req,res)=>{
+    // let id=req.query.id;
+    let sql='SELECT  * from cakes';
+    pool.query(sql,(error,results)=>{
+      if(error) throw error;
+      //console.log(results)
+      if(results.length>0){
+        res.send({message:'查询成功',code:1,cakeInfo:results[0]});
+      }else{
+        res.send({message:'查询失败',code:0});
+      }
+   })
+  });
+
+  server.get('/addcart',(req,res)=>{
+      let id=req.query.oid;
+      console.log(req.query.id);
+      let sql1="SELECT id,title,price,size,mini_pic from cake_details where id=?"
+      pool.query(sql1,[id],(error,results)=>{
+        if(error) throw error;
+        if(results.length>0){
+          let sql="inset into cakes set ?"
+          pool.query(sql,[results],(err,result)=>{
+            if(result.affectedRows>0){
+              res.send({message:'添加成功',code:1});
+            }else{
+              res.send({message:'添加失败',code:0});
+            }
+          })
+        }
+        
+     })
+    });
+
 //获取蛋糕首页详情的接口
 server.get('/index', (req, res) => {
   //获取首页分类表中的全部数据

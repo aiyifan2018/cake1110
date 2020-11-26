@@ -103,6 +103,7 @@ export default {
   mounted() {
     // 获取地址栏中传过来的参数
     this.kw=`${this.$route.params.kw}`;
+    console.log(this.kw);
     this.loadList(this.kw,this.active);
   }, 
 }

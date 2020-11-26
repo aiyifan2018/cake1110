@@ -4,19 +4,15 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
-
-import Kefu from '../views/Kefu.vue'
-
- 
+import Kefu from '../views/Kefu.vue' 
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
-import Search from '../components/Search.vue'
 import CakeList from '../views/CakeList.vue'
 import Shoppingcart from '../views/Shoppingcart.vue'
 import Pay from '../views/pay.vue'
 import ok from '../views/ok.vue'
-
-
+import cakesearch from '../views/CakeSearch.vue'
+import cakenofound from '../views/CakeNofound.vue'
 
 Vue.use(VueRouter)
 
@@ -42,12 +38,6 @@ const routes = [
     name: 'Mine',
     component: Mine
   },{
-    path: '/search',
-    name: 'Search',
-    component: Search
-  },
-  {
-
     path: '/login',
     component: Login
   },
@@ -75,6 +65,12 @@ const routes = [
   },{
     path:'/kefu',
     component:Kefu
+  },{
+    path:'/cakesearch',
+    component:cakesearch
+  },{
+    path:'/cakenofound',
+    component:cakenofound
   }
 
   
