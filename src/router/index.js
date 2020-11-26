@@ -6,6 +6,7 @@ import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
 import Me from '../views/Me.vue'
 import Search from '../components/Search.vue'
+import Kefu from '../views/Kefu.vue'
 
  
 import Login from '../views/Login.vue'
@@ -54,6 +55,10 @@ const routes = [
   },{
     path:'/cakelist',
     component:CakeList
+  },
+  {
+    path:'/kefu',
+    component:Kefu
   }
   // {
   //   path: '/about',

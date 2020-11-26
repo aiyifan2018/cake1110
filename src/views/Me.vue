@@ -40,16 +40,16 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link>
           <img src="../../public/img/icons/address.png">
           收货地址
         </router-link>
       </li>
        <li>
-        <router-link to="/">
-          <img src="../../public/img/icons/customer.png">
+        <router-link  to="/kefu">
+          <img @click="navkefu" src="../../public/img/icons/customer.png">
           联系客服
-        </router-link>
+        </router-link> 
       </li>
       <li>
         <router-link to="/">
@@ -66,6 +66,15 @@
     </ul>
   </div>
 </template>
+<script>
+	export default{
+		methods:{
+			navkefu(){
+				
+			}
+		}
+	}
+</script>
 <style scoped>
 a{
   text-decoration: none;
