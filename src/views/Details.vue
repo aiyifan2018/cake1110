@@ -218,6 +218,9 @@
             }
         },
         mounted () {
+          // 接受地址栏参数
+          let id=this.$route.params.id;
+          console.log(id);
             window.addEventListener('scroll', this.isScroll, true);  
              // 监听（绑定）滚轮 滚动事件
         },

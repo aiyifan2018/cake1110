@@ -54,7 +54,7 @@ const routes = [
 
 
   },{
-    path:'/cakelist',
+    path:'/cakelist/:kw',
     component:CakeList
   },
   {
