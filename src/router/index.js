@@ -4,14 +4,10 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
-<<<<<<< HEAD
-import Me from '../views/Me.vue'
-import Search from '../components/Search.vue'
+
 import Kefu from '../views/Kefu.vue'
 
  
-=======
->>>>>>> 0281fc83663fbb08fec2ad9ea178d67919d06bb2
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Search from '../components/Search.vue'
@@ -60,20 +56,17 @@ const routes = [
   },{
     path:'/cakelist',
     component:CakeList
-<<<<<<< HEAD
   },
   {
     path:'/kefu',
     component:Kefu
   }
-=======
 
-  },
+  
   // {
   //   path:'/details',
   //   component:Details
   // }
->>>>>>> 0281fc83663fbb08fec2ad9ea178d67919d06bb2
   // {
   //   path: '/about',
   //   name: 'About',

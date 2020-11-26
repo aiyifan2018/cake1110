@@ -40,25 +40,46 @@
 			return {
 				data: "",
 				avatar: '',
-				username: ''
+				username: '',
+				uname:''
 			};
 		},
-		mounted() {},
+		mounted() {
+			console.log("222222222")
+			console.log(localStorage.getItem("userinfo"))
+			if(localStorage.getItem("userinfo")===undefined){
+				this.uname = "1234"
+			}else{
+          this.uname = JSON.parse(localStorage.getItem("userinfo"))[0].uname;
+			}
+			 
+			 
+		},
 		sockets: {
 			// 接受图片
 			reciveImage(data) {
-				if (data.username === this.username) {
+					
+				if(!data.roomName){
+					roomname="";
+				}else{
+					console.log(typeof data);
+					console.log(data);
+           var roomname = data.roomName;
+				}	
+				if (roomname!=this.uname) {
+					console.log("99999")
 					document.querySelector(".box-bd").innerHTML +=
 						`
-					 <div class="message-box" style="display: flex;align-items: center;">
+					 <div class="message-box" style="display: flex;align-items: center;justify-content: flex-end">
 					   <div class="my message">
-					   <img width="40px" src="https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg" alt="" class="avatar">
-					   
-					     <div class="content">
+					  <img width="40px" src="https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg" alt="" class="avatar">
+				 	     <div class="content">
 					       <div class="bubble">
 					         <div class="bubble_cont"><img width="100px" src="${data.img}" ></div>
 					       </div>
-					     </div>
+							 </div>
+							  
+					  
 					   </div>
 					 </div>
 					 `
@@ -66,7 +87,7 @@
 					document.querySelector(".box-bd").innerHTML +=
 						`
 					 <div class="message-box">
-					   <div class="other message" style="display: flex;align-items: center;">
+					   <div class="other message" style="display: flex;align-items: center;justify-content: flex-end">
 					 <img width="40px" src="https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg" alt="" class="avatar">
 					 
 					     
@@ -85,17 +106,34 @@
 			reciveMessgae(data) { //'chaTmessage'事件返回值
 				var content = document.getElementById("content");
 				content.innerHTML = ""
-				if (data.username === this.username) {
+				console.log("33333333"+this.uname)
+				var roomname = "";
+				console.log(data);
+				
+				if(!data.roomName){
+					roomname="";
+				}else{
+					console.log(typeof data);
+					console.log(data);
+           var roomname = data.roomName;
+				}		
+				
+
+				console.log(data)
+				if (roomname!=this.uname) {
+					
 					document.querySelector(".box-bd").innerHTML +=
 						`
 						 <div class="message-box" style="margin-bottom: 10px;">
-						   <div class="mymessage" style="display: flex;align-items: center;">
-						     <img width="40px" src="https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg" alt="" class="avatar">
-						     <div class="content" style="margin-left: 10px;">
+							 <div class="mymessage" style="display: flex;align-items: center;justify-content: flex-end;">
+							 <div class="content" style="margin-left: 11px;">
 						       <div class="bubble">
 						         <div class="bubble_cont">${data.message}</div>
 						       </div>
 						     </div>
+								 <img width="40px" src="${data.roomName=='111111'?'https://www.baidu.com/cache/ala_atom/app/ms_company_number/icon-kefu_88cd7fa.png':
+								 'https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg'}" alt="" class="avatar">
+						     
 						   </div>
 						 </div>
 						 `
@@ -104,7 +142,8 @@
 						`
 						 <div class="message-box" style="margin-bottom: 10px;">
 						   <div class="othermessage" style="display: flex;align-items: center;">
-						     <img width="40px" class="othermessageimg" src="https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg" alt="" class="avatar">						
+						     <img width="40px" class="othermessageimg" src="${this.uname=='111111'?'https://www.baidu.com/cache/ala_atom/app/ms_company_number/icon-kefu_88cd7fa.png':
+								 'https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg'}" alt="" class="avatar">						
 						     <div class="content" style="margin-left: 10px; " > 
 						       <div class="bubble">
 						         <div class="bubble_cont">${data.message}</div>
@@ -121,6 +160,7 @@
 			// 返回上一级
 			goback() {
 				this.$router.go(-1);
+
 			},
 			// 上传图片
 			filechange: function(e) {
@@ -153,7 +193,7 @@
 					return;
 				}
 				this.$socket.emit("sendMessage", {
-					roomName: 'aaa',
+					roomName: this.uname,
 					message: content
 				}); //发送信息到后台hello事件
 			}
@@ -170,6 +210,7 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
+		justify-content: right;
 	}
 
 	.box-bd {

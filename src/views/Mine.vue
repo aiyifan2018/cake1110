@@ -46,7 +46,7 @@
         </router-link>
       </li>
        <li>
-        <router-link to="/">
+        <router-link to="/kefu">
           <img src="../../public/img/icons/customer.png">
           联系客服
         </router-link>
