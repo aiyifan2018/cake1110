@@ -19,13 +19,13 @@
         <div id="topleft">
             <!-- 标题开始 -->
             <div class="details_name">
-                心之和/{{category.dname}}
+                {{category.bname}}/{{category.dname}}
             </div>
             <div class="details_price">
                 ￥{{category.price}}
             </div>
             <div class="details_nid">
-                已售456件
+                已售{{category.sales_count}}件
             </div>
         </div>
         <div class="details_use">
@@ -51,13 +51,13 @@
         <div class="details_chose">
             <div @click="handler">
                 <span>已选</span>
-                <span>六寸</span>
+                <span>{{category.size}}寸</span>
                 <span>. . .</span>
             </div>
             <mt-popup v-model="popupVisible" position="bottom" >
                 <div class="details_list">
                     <div class="popup">
-                        <img src="../assets/picture/010.jpg" alt="">
+                        <img  :src="require('../assets/img/'+category.mini_pic)" alt="">
                     </div>
                     <div class="list">
                         <ul>
@@ -67,7 +67,7 @@
                             <li>最快{{category.arrival_time}}送达</li>
                         </ul>
                         <div class="details_name">
-                            心之和/{{category.dname}}
+                            {{category.bname}}/{{category.dname}}
                         </div>
                         <div class="details_price">
                             ￥{{category.price}}
@@ -77,7 +77,7 @@
                 <div class="details_shopping">
                     <ul>
                         <li>选择</li>
-                        <li><span v-for="(item,index)　of category.series_id" :key="index"> {{category.size}}</span></li>
+                        <li><span  class="inf" @click="showSize($event,item)" v-for="(item,index)　of series" :key="index" >{{item.size}}</span></li>
                         <li>数量</li>
                     </ul>
                     <div>
@@ -181,8 +181,8 @@
      <div class="details_end">
         <van-goods-action v-show=" isShow">
             <van-goods-action-icon icon="chat-o" text="客服"  dot />
-            <van-goods-action-icon icon="cart-o" text="购物车" to="/cakecart" dot/>
-            <van-goods-action-button to="/cakecart" text="加入购物车" />
+            <van-goods-action-icon icon="cart-o" text="购物车" to="`/cakecart/${item.did}`"  dot/>
+            <van-goods-action-button @click="onClickBigBtn" text="加入购物车" />
             <van-goods-action-button to="/cakecart"  type="danger" text="立即购买" />
           </van-goods-action>
      </div>
@@ -206,7 +206,9 @@
                 city:"",
                 country:'',
                 isShow:true,
-                category:[]
+                category:[],
+                series:{},
+                active:false
             }
         },
         mounted () {
@@ -214,9 +216,30 @@
             this.axios.get('/cakeDetails?id='+id).then(res=>{
                 this.category = res.data.results[0];
                 console.log(this.category);
+                let cid=this.category.series_id;
+                console.log(cid)
+            this.axios.get('/cakeDetails_series?cid='+cid).then(res=>{
+               this.series=res.data.results;
+                console.log(this.series);
+                console.log(cid)
+            })
             })
         },
         methods: {
+         onClickMiniBtn() {
+            Toast('加入购物车成功');
+          },
+            showSize(e,item){
+                let id=item.did;
+                this.axios.get('/cakeDetails?id='+id).then(res=>{
+                    this.category = res.data.results[0];
+                });   
+                let infos = document.querySelectorAll('.inf');
+                infos.forEach((item)=>{
+                   item.className = "";
+                })
+               e.className="active";
+            },
             handler() {
                 this.closeOnClickModal = true;
                 this.popupVisible = true;
@@ -261,8 +284,12 @@
              }
             }
     }
+
 </script>
 <style scoped>
+    .active{
+        background-color: red !important;
+    }
     .body {
         font-size: 24rpx;
     }
@@ -325,7 +352,7 @@
     }
 
     .details_use div:nth-child(2) span:nth-child(2) {
-        padding-left: 7rem;
+        padding-left: 3rem;
     }
 
     .details_use div:nth-child(2) {
@@ -419,10 +446,13 @@
     }
 
     .details_shopping ul>li:nth-child(2) span {
-        border: 1px solid rgb(255, 0, 0);
-        padding: 0.5rem 1rem
+        border: 1px solid #000;
+        padding:0.5rem 1rem;
+        margin-right:1rem
     }
-
+    .details_shopping ul>li>span:nth-child(2) :active{
+        border: 1px solid rgb(250, 0, 0);
+    }
     .details_shopping div {
         position: relative;
         top: -1rem;
@@ -466,7 +496,7 @@
   text-align: right;
 }
 .panel-body {
-  border-top: 1px solid #E9ECF0;
+  border-top: 1pactivex solid #E9ECF0;
 }
 .comments-item {
   padding: 0.85714286rem 1.14285714rem;
@@ -606,7 +636,7 @@
   -ms-user-select: none;
   user-select: none;
 }
- .comments-more > a:active {
+ .comments-more > a{
   background-color: #F7F9FA;
 } 
 .details_speak{

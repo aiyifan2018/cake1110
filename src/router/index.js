@@ -4,13 +4,14 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
-import Me from '../views/Me.vue'
-import Search from '../components/Search.vue'
+ 
+
 import Details from '../views/Details.vue'
 import Login from '../views/Login.vue'
-import Reight from '../views/Reight.vue'
-
+import Register from '../views/Register.vue'
+import Search from '../components/Search.vue'
 import CakeList from '../views/CakeList.vue'
+
 
 
 Vue.use(VueRouter)
@@ -35,20 +36,21 @@ const routes = [
   },{
     path: '/mine',
     name: 'Mine',
-    component: Me
+    component: Mine
   },{
     path: '/search',
     name: 'Search',
     component: Search
   },
-  
   {
+
     path: '/login',
     component: Login
   },
   {
-    path: '/reight',
-    component: Reight
+    path: '/register',
+    component: Register
+
 
   },{
     path:'/cakelist',
@@ -57,6 +59,11 @@ const routes = [
     path:'/cakeDetails/:id',
     component:Details
   }
+
+  // {
+  //   path:'/details',
+  //   component:Details
+  // }
   // {
   //   path: '/about',
   //   name: 'About',
