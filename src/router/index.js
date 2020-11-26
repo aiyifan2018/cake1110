@@ -7,7 +7,6 @@ import Mine from '../views/Mine.vue'
 import Me from '../views/Me.vue'
 import Search from '../components/Search.vue'
 import Details from '../views/Details.vue'
- 
 import Login from '../views/Login.vue'
 import Reight from '../views/Reight.vue'
 
@@ -55,7 +54,7 @@ const routes = [
     path:'/cakelist',
     component:CakeList
   },{
-    path:'/details',
+    path:'/cakeDetails/:id',
     component:Details
   }
   // {

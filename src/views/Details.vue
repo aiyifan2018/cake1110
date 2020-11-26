@@ -1,57 +1,51 @@
 <template>
     <div class="details">
-        <van-nav-bar
-            title="心之和/新排行榜COOL酪(1.5磅)"
-            left-text="返回"
-            right-text="按钮"
-            left-arrow
-            @click-left="onClickLeft"
-            @click-right="onClickRight"
-            fixed
-            z-index="1"
-            />
+        <mt-header title="美丽家蛋糕" fixed>
+            <router-link to="/catesort" slot="left">
+              <mt-button icon="back"></mt-button>
+            </router-link>
+            <mt-button icon="more" slot="right"></mt-button>
+          </mt-header>
         <!-- 上部轮播图开始 -->
         <div class="details_cake">
-            <mt-swipe :show-indicators="false">
-                <mt-swipe-item><img src="../assets/picture/003.jpg" alt=""></mt-swipe-item>
-                <mt-swipe-item><img src="../assets/picture/004.jpg" alt=""></mt-swipe-item>
-                <mt-swipe-item><img src="../assets/picture/008.jpg" alt=""></mt-swipe-item>
-                <mt-swipe-item><img src="../assets/picture/010.jpg" alt=""></mt-swipe-item>
-
+          <mt-swipe :show-indicators="false">
+             <mt-swipe-item><img src="../assets/img/006.jpg" alt=""></mt-swipe-item>
+             <mt-swipe-item><img src="../assets/img/007.jpg" alt=""></mt-swipe-item>
+             <mt-swipe-item><img src="../assets/img/010.jpg" alt=""></mt-swipe-item>
+             <mt-swipe-item><img src="../assets/img/008.jpg" alt=""></mt-swipe-item>
             </mt-swipe>
         </div>
         <!-- 下部详情 -->
         <div id="topleft">
             <!-- 标题开始 -->
             <div class="details_name">
-                心之和/新排行榜COOL酪(1.5磅)
+                心之和/{{category.dname}}
             </div>
             <div class="details_price">
-                ￥256
+                ￥{{category.price}}
             </div>
             <div class="details_nid">
-                已售736件
+                已售456件
             </div>
         </div>
         <div class="details_use">
             <div>
-                <span>适合4-10个人分享</span>
-                <span>一次性蛋糕用具1套</span>
+                <span>适合{{category.many_people}}分享</span>
+                <span>{{category.tableware}}</span>
             </div>
             <div>
-                <span>附赠贺卡</span>
-                <span>最快24小时送达</span>
+                <span>{{category.gift}}</span>
+                <span>最快{{category.arrival_time}}送达</span>
             </div>
         </div>
         <div class="details_cookie">
             <div>
                 <span>食材</span>
-                <span>乳酪，白砂糖，白巧克力，淡奶油，土鸡蛋，黄油，黑加仑葡萄，糖渍香橙丝，草莓
-                </span>
+                <span>{{category.ingredients}}</span>
             </div>
             <div>
                 <span>保鲜</span>
-                <span>-18℃冷藏，-5℃品尝</span>
+                <span>{{category.freshtime}}</span>
             </div>
         </div>
         <div class="details_chose">
@@ -60,30 +54,30 @@
                 <span>六寸</span>
                 <span>. . .</span>
             </div>
-            <mt-popup v-model="popupVisible" position="bottom">
+            <mt-popup v-model="popupVisible" position="bottom" >
                 <div class="details_list">
                     <div class="popup">
                         <img src="../assets/picture/010.jpg" alt="">
                     </div>
                     <div class="list">
                         <ul>
-                            <li>适合4-10个人分享</li>
-                            <li>一次性蛋糕用具1套</li>
-                            <li>附赠贺卡</li>
-                            <li>最快24小时送达</li>
+                            <li>适合{{category.many_people}}分享</li>
+                            <li>{{category.tableware}}</li>
+                            <li>{{category.gift}}</li>
+                            <li>最快{{category.arrival_time}}送达</li>
                         </ul>
                         <div class="details_name">
-                            心之和/新排行榜COOL酪(1.5磅)
+                            心之和/{{category.dname}}
                         </div>
                         <div class="details_price">
-                            ￥256
+                            ￥{{category.price}}
                         </div>
                     </div>
                 </div>
                 <div class="details_shopping">
                     <ul>
                         <li>选择</li>
-                        <li><span>6寸</span></li>
+                        <li><span v-for="(item,index)　of category.series_id" :key="index"> {{category.size}}</span></li>
                         <li>数量</li>
                     </ul>
                     <div>
@@ -91,27 +85,20 @@
                         <span>{{n}}</span>
                         <button @click="add">+</button>
                     </div>
-                    <div class="details_bar">
-                        <a href="">店铺</a>
-                        <a href="">购物车</a>
-                        <a href="">加入购物车</a>
-                        <a href="">立即购买</a>
-                    </div>
                 </div>
-                <!-- <van-goods-action v-show=" isShow">
-                    <van-goods-action-icon icon="chat-o" text="客服" dot />
-                    <van-goods-action-icon icon="cart-o" text="购物车" dot/>
-                    <van-goods-action-icon icon="shop-o" text="店铺" badge="1" />
-                    <van-goods-action-button  text="加入购物车" />
-                    <van-goods-action-button type="danger" text="立即购买" />
-                  </van-goods-action> -->
-            </mt-popup>
+                <van-goods-action v-show=" isShow">
+                    <van-goods-action-icon icon="chat-o" text="客服"  dot />
+                    <van-goods-action-icon icon="cart-o" text="购物车" to="/cakecart" dot/>
+                    <van-goods-action-button  text="加入购物车" to="/cakecart" />
+                    <van-goods-action-button   type="danger" text="立即购买" to="/cakecart"/>
+                  </van-goods-action>
+            </mt-popup>  
         </div>
-        <van-cell is-link @click="showPopup" class="details_address">配送至 ---{{country}}</van-cell>
+         <van-cell is-link @click="showPopup" class="details_address">配送至 ---{{province}} {{city}}  {{country}}</van-cell>
        <van-popup v-model="show" position="bottom" :style="{ height: '50%' }">
             <van-area :area-list="areaList" :columns-num="3" ref="myArea"
             @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
-        </van-popup>
+        </van-popup> 
         <div class="details_speak">
            <!-- 评价区域 -->
             <!-- 实验代码开始 -->
@@ -122,24 +109,30 @@
                         <a href="../../src/assets/picture/welcome_avatar.png">最近已有295条评价<i class="iconfont iconfont-arrow-right"></i></a>
                     </div>
                 </div>
-                    <div class="panel-body comments">
-                         <div class="comments-item">
-                            <div class="comments-item-head">
-                                <div class="comments-item-head-left">
-                                    <img class="comments-item-head-pic" src="../../src/assets/picture/PTF01照片.jpg" alt="宁*" />
-                                    <span class="comments-item-head-name">宁*</span>
-                                </div>
-                                <!--Dev::Star1-5 新增classs Star1-5-->
-                                <div class="comments-item-head-right"><span class="comments-item-head-star star5"></span></div>
+                <div class="panel-body comments">
+                    <div class="comments-item">
+                        <div class="comments-item-head">
+                            <div class="comments-item-head-left">
+                                <img class="comments-item-head-pic" src="../../src/assets/picture/PTF01照片.jpg" alt="宁*" />
+                                <span class="comments-item-head-name">宁*</span>
                             </div>
-                            <div class="comments-item-content">口感相当不错</div>
+                                <!--Dev::Star1-5 新增classs Star1-5-->
+                            <div class="comments-item-head-right">
+                                <span class="comments-item-head-star star5">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="comments-item-content">口感相当不错</div>
                             <div class="comments-item-imglist">
                                 <div class="comments-item-imglist-item" style="background-image: url('../../src/assets/picture/1be705129e1443f180e334d297c32027.jpeg');">
                                 </div>
                             </div>
-                            <div class="comments-item-address"><i class="iconfont iconfont-address"></i>北京朝阳区</div>
+                            <div class="comments-item-address">
+                                <i class="iconfont iconfont-address">
+                                </i>北京朝阳区
                             </div>
-                    </div>
+                        </div>
+                </div>
                     <div class="panel-body comments">
                          <div class="comments-item">
                             <div class="comments-item-head">
@@ -181,16 +174,16 @@
                     </div>
         </section>
     </div>
-            <!-- 实验代码结束 -->
+            <!--   实验代码结束 -->
      <!-- <div class="details_image">
         <img v-for="img in imageList" v-lazy="img" :key="img"/>
      </div> -->
      <div class="details_end">
         <van-goods-action v-show=" isShow">
-            <van-goods-action-icon icon="chat-o" text="客服" dot />
-            <van-goods-action-icon icon="cart-o" text="购物车" dot/>
-            <van-goods-action-button  text="加入购物车" />
-            <van-goods-action-button type="danger" text="立即购买" />
+            <van-goods-action-icon icon="chat-o" text="客服"  dot />
+            <van-goods-action-icon icon="cart-o" text="购物车" to="/cakecart" dot/>
+            <van-goods-action-button to="/cakecart" text="加入购物车" />
+            <van-goods-action-button to="/cakecart"  type="danger" text="立即购买" />
           </van-goods-action>
      </div>
     </div>  
@@ -209,21 +202,20 @@
                 show: false,
                 overlay: false,
                 areaList,
-                country: '请选择地区',
+                province:'',
+                city:"",
+                country:'',
                 isShow:true,
-    //             imageList: [
-    //             '../assets/picture/5141019.jpg_220x240.jpg',
-    //             '../assets/picture/5141019.jpg_220x240.jpg'
-    //   ],
+                category:[]
             }
         },
         mounted () {
-            window.addEventListener('scroll', this.isScroll, true);  
-             // 监听（绑定）滚轮 滚动事件
+            let id = this.$route.params.id;
+            this.axios.get('/cakeDetails?id='+id).then(res=>{
+                this.category = res.data.results[0];
+                console.log(this.category);
+            })
         },
-        unmounted () {
-         window.removeEventListener('scroll', this.isScroll)
-  },
         methods: {
             handler() {
                 this.closeOnClickModal = true;
@@ -262,47 +254,22 @@
             },
             //点击确定时，弹窗关闭，且选中的数据，通过传参，显示在页面上
             onConfirm(val) {
-                this.country = val[0].name+'--'+val[1].name+'--'+val[2].name;
+                this.province= val[0].name,
+                this.city=val[1].name,
+                this.country=val[2].name;
                 this.show = false;
-            },
-            onClickLeft() {
-                Toast('返回');
-                },
-                onClickRight() {
-                Toast('按钮');
-                },
-        },
-        handleScroll(){
-        const top = document.documentElement.scrollTop
-        if (top > 100) {	// 滚动条滚动距离超过100时
-            this.isShow = false
-        } else {
-            this.isShow = true
-        }
-        }
+             }
+            }
     }
 </script>
 <style scoped>
     .body {
         font-size: 24rpx;
     }
-
-    body,
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    ul,
-    ol,
-    li,
-    tr,
-    td,
-    th,
-    div,
-    span {
+   .mint-header{
+    background-color:coral
+    }
+    body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,tr,td,th,div,span {
         padding: 0;
         margin: 0;
         box-sizing: border-box
@@ -312,15 +279,15 @@
         height: 400px;
     }
     .details_cake img{
-        height:400px;
         width:100%;
+        overflow: hidden;
     }
     .details_name{
         padding-left:1rem;
         padding-top:0.5rem;
     }
     .details_price {
-        padding-top: 1rem;
+        padding-top: 0.8rem;
         padding-left:1rem;
         padding-bottom:1rem;
         color: rgb(255, 0, 0);
@@ -418,7 +385,7 @@
     .list ul {
         position: absolute;
         top: -8rem;
-        left: 11rem
+        left: 13rem
     }
 
     .list ul li {
@@ -440,7 +407,7 @@
     }
 
     .details_shopping {
-        padding-bottom: 8rem;
+        padding-bottom: 5rem;
         padding-left: 1rem;
         padding-top: 1rem;
         position: relative;
@@ -471,6 +438,10 @@
         padding:1rem 0rem 2rem 1rem;
         border-bottom:5px solid #bbb;
     }
+    /* .details_end{
+        z-index: 99;
+        position: absolute;
+    } */
     /* 。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 */
     .panel {
   background-color: #fff;
@@ -644,9 +615,5 @@
 body{
     box-sizing: border-box;
 }
-.details_bar{
-    position:relative;
-    top:0rem;
-    left:0rem
-}
+
 </style>
