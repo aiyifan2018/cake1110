@@ -145,3 +145,18 @@ div.mint-searchbar {
   border-radius: 50%;
 }
 </style>
+<script>
+export default {
+  data() {
+    return {
+      task:'',
+    }
+  },
+  methods: {
+    add(){
+      this.bus.$emit("add_task",this.task);
+      this.task="";
+    }
+  },
+}
+</script>

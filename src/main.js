@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import MintUi from 'mint-ui'
+<<<<<<< HEAD
 
 
 
@@ -16,15 +17,26 @@ Vue.use(new vuesocketio({
 	})
 }));
 
+=======
+import axios from 'axios'
+import qs from 'qs'
+import moment from 'moment'
+>>>>>>> 0281fc83663fbb08fec2ad9ea178d67919d06bb2
 import 'mint-ui/lib/style.css'
 Vue.use(MintUi)
-import axios from 'axios'
+
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
+// import 'mint-ui/lib/style.css'
+Vue.use(MintUi)
+//Vue.use(Vant)
 
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false
-
+Vue.prototype.moment=moment
+Vue.prototype.qs=qs
 new Vue({
 	router,
 	store,
