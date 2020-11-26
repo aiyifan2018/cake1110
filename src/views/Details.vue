@@ -218,11 +218,11 @@
                 console.log(this.category);
                 let cid=this.category.series_id;
                 console.log(cid)
-            this.axios.get('/cakeDetails_series?cid='+cid).then(res=>{
+                this.axios.get('/cakeDetails_series?cid='+cid).then(res=>{
                this.series=res.data.results;
                 console.log(this.series);
                 console.log(cid)
-            })
+                })
             })
         },
         methods: {
