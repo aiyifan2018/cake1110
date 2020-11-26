@@ -53,10 +53,11 @@ const routes = [
     path:'/cakelist',
     component:CakeList
 
-  },{
-    path:'/details',
-    component:Details
-  }
+  },
+  // {
+  //   path:'/details',
+  //   component:Details
+  // }
   // {
   //   path: '/about',
   //   name: 'About',

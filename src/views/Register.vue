@@ -9,28 +9,7 @@
     <div class="title">
       蛋糕来了
     </div>
-    <!-- <mt-field 
-      type="tel"
-      placeholder="请输入手机号"
-      :attr="{maxlength:11}"
-      v-model="phone"
-      @blur.native.capture="checkPhone"
-      :state="phoneState">
-    </mt-field>
-    <hr class="hr"/> -->
     
-    <!-- <mt-field 
-      type="text"
-      placeholder="请输入短信验证码"
-      v-model="code"
-      :attr="{maxlength:5}"
-      @blur.native.capture="checkCode"
-      :state="codeState">
-        <mt-button  class="code">
-          获取验证码
-        </mt-button> 
-    </mt-field>
-    <hr class="hr"/> -->
 
       <mt-field 
         type="text"
@@ -177,7 +156,7 @@ export default {
        console.log(this.username,this.password);
         if(this.checkUsername()&&this.checkPasssword()&&this.checkConpasssword()){
         this.axios.post("/register","username="+this.username+"&password="+this.password).then(res=>{
-          if(res.data.code==200){
+          if(res.data.code==1){
             this.$router.push("/login");
           }else{
             this.$messagebox("注册提示","用户名已占用")
