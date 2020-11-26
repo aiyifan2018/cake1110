@@ -9,7 +9,7 @@
     </router-view>
       
     
-      <!-- <mt-tabbar v-model="selected" fixed>
+       <mt-tabbar v-model="selected" fixed>
       <mt-tab-item id="index">首页
         <img
           src="./assets/image/index_enabled.png"
@@ -43,10 +43,11 @@
         <img src="./assets/image/me_disabled.png" v-else slot="icon" />
       </mt-tab-item>
     </mt-tabbar>
-  </div>-->
   </div>
+ 
 </template>
-<!--<script>
+
+<script>
   export default{
     data(){
       return {

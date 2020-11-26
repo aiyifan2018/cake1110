@@ -8,6 +8,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Search from '../components/Search.vue'
 import CakeList from '../views/CakeList.vue'
+import Setup from '../views/Setup.vue'
 
 
 
@@ -52,6 +53,11 @@ const routes = [
   },{
     path:'/cakelist',
     component:CakeList
+
+  },
+  {
+    path:'/setup',
+    component:Setup
 
   },
   // {

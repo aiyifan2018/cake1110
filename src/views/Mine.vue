@@ -1,10 +1,13 @@
 <template>
   <div>   
     <div class="backtop">
-      <router-link to="/" class="routerLink">
+      <router-link to="/Setup" class="routerLink">
         <img src="../../public/img/icons/setup.png" alt="">
       </router-link><br>
-      <router-link to="/register">
+      <router-link to="/setup" v-if="this.$store.state.isLogined==1">
+        <mt-button type="danger"  class="relogin">欢迎,{{this.$store.state.userInfo[0].uname}}</mt-button>
+      </router-link>
+      <router-link to="/register" v-else>
         <mt-button type="danger"  class="relogin">登录/注册</mt-button>
       </router-link>
     </div>
@@ -17,16 +20,24 @@
         <hr class="hrs" />
       </div>
       <ul class="payment">
-        <li><img src="../../public/img/icons/paid.png" slot="icon">
-          <p>待付款</p>  
+        <li>
+          <router-link to="/">
+            <img src="../../public/img/icons/paid.png">
+            <p>待付款</p> 
+          </router-link>          
         </li>
         <li>
-          <img src="../../public/img/icons/delivered.png" slot="icon">
-          <p>今日配送</p>         
+          <router-link to="/">
+            <img src="../../public/img/icons/delivered.png">
+            <p>今日配送</p> 
+          </router-link>          
         </li>
         <li>
-          <img src="../../public/img/icons/evaluated.png" slot="icon">
-          <p>待评价</p>  
+          <router-link to="/">
+            <img src="../../public/img/icons/evaluated.png">
+            <p>待评价</p>  
+          </router-link>
+          
         </li>
       </ul>
     </div>
@@ -34,31 +45,31 @@
   
     <ul class="about">
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/coupon.png">
           优惠劵
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/address.png">
           收货地址
         </router-link>
       </li>
        <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/customer.png">
           联系客服
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/problem.png">
           常见问题
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/about.png">
           关于我们
         </router-link>
@@ -147,3 +158,15 @@ a{
   }
   
 </style>
+<script>
+export default {
+  data(){
+    return {
+
+    }
+  },
+  methods:{
+    
+  }
+}
+</script>
