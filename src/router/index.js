@@ -4,7 +4,8 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
-import Kefu from '../views/Kefu.vue' 
+import Details from '../views/Details.vue'
+import Kefu from '../views/Kefu.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import CakeList from '../views/CakeList.vue'
@@ -49,8 +50,12 @@ const routes = [
   },{
     path:'/cakelist/:kw',
     component:CakeList
-
   },{
+    path:'/cakeDetails/:id',
+    component:Details
+  },
+
+   {
      path:'/shoppingcart/:cake',
      name:'Shoppingcart',
      component:Shoppingcart
@@ -91,5 +96,5 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+ 
 export default router
