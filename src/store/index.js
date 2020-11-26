@@ -37,10 +37,10 @@ export default new Vuex.Store({
     login_action(context,payload){ 
       axios.post("/login",payload).then(res=>{
         //用户登录成功
-        if(res.data.code==1){
+        if(res.data.code==200){
           //提交
           context.commit("logined_mutations",res.data.userinfo)
-          localStorage.setItem("isLogined",1)
+          localStorage.setItem("isLogined",200)
           localStorage.setItem("userinfo",JSON.stringify(res.data.userinfo))
           router.push("/")
         }else{

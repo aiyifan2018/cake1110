@@ -177,7 +177,7 @@ export default {
        console.log(this.username,this.password);
         if(this.checkUsername()&&this.checkPasssword()&&this.checkConpasssword()){
         this.axios.post("/register","username="+this.username+"&password="+this.password).then(res=>{
-          if(res.data.code==1){
+          if(res.data.code==200){
             this.$router.push("/login");
           }else{
             this.$messagebox("注册提示","用户名已占用")
