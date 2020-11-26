@@ -19,7 +19,7 @@
     <!-- 面板内容开始 -->
     <mt-tab-container class="main" v-infinite-scroll="loadMore" infinite-scroll-distance="10" infinite-scroll-disabled="loading" infinite-scroll-immediate-check="true">
       <mt-tab-container-item v-if="render">
-        <router-link to="/details" v-for="(item, index) in cakelist" :key="index">
+        <router-link to="`/cakeDetails/${item.did}`" v-for="(item, index) in cakelist" :key="index">
           <ul>
             <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
             <li>{{item.dname}}(约2磅)</li>

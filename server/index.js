@@ -44,6 +44,22 @@ server.use(bodyParser.urlencoded({
   extended: false
 }));
 
+var http = require('http').createServer(server);
+var io = require('socket.io')(http);
+// socket业务逻辑
+io.on('connection', socket => {
+    console.log("11111111111");
+	socket.on('sendMessage', data => {
+		console.log("22222");
+		io.emit('reciveMessgae', data)
+	})
+	// 群发图片
+	socket.on('sendImage', data => {
+		console.log(data)
+		io.emit('reciveImage', data)
+	})
+});
+
 //获取蛋糕首页详情的接口
 server.get('/index', (req, res) => {
   //获取首页分类表中的全部数据
@@ -127,11 +143,11 @@ server.get('/banner', (req, res) => {
 
 // 获取蛋糕详细信息(包括标题,正文,作者等)
 server.get('/cakeDetails', (req, res) => {
-   let id=req.query.id;
+  let id=req.query.id;
   //SQL查询
-   let sql = 'select * FROM cake_details INNER JOIN brand_message ON brand_message.bid = cake_details.brand_id where did =?'
-  // 执行SQL查询
-  pool.query(sql,[id],(error, results) => {
+   let sql ='select add_time,applicable ,arrival_time,brand_id,did,dname,freshtime,gift,ingredients,many_people,mini_pic,price,sales_count,series_id,shape,size,sort_id,tableware,title,bname FROM cake_details INNER JOIN brand_message ON brand_message.bid = brand_id where did =?';
+  // 执行SQL查询 
+  pool.query(sql,[id],(error, results) => { 
     if (error) throw error;
     //results代表的返回的结果集,为数组类型;同是在该数组中包含了一个
     //对象,该对象就是文章的详细信息,在使用时,无需返回数组可直接返回对象
@@ -141,20 +157,30 @@ server.get('/cakeDetails', (req, res) => {
   });
 });
 
+server.get('/cakeDetails_series', (req, res) => {
+  let cid=req.query.cid;
+  let sql="SELECT * FROM cake_details WHERE series_id=?";
+  pool.query(sql,[cid],(error, results) => {
+    if (error) throw error;
+    res.send({ message: '查询成功', code: 1, results: results});
+  })
+});
+
 // 用户注册的接口
 server.post('/register', (req, res) => {
   //console.log(md5('12345678')) ;
   //获取用户名和密码
-  let uname = req.body.username;
-  let upwd = req.body.password;
+  let username = req.body.username;
+  let password = req.body.password;
   //查找用户是否存在
-  let sql = 'SELECT * FROM user WHERE username=?';
-  pool.query(sql, [username], (error, results) => {
+  let sql = 'SELECT * FROM user WHERE uname= ?';
+  pool.query(sql, [username], (error, result) => {
+    console.log(result);
     if (error) throw error;
     //如果用户不存在,则插入记录
-    if (results[0].count == 0) {
+    if (result.length == 0) {
       sql = 'INSERT INTO user(uname,upwd) VALUES(?,MD5(?))';
-      pool.query(sql, [username, password], (error, results) => {
+      pool.query(sql, [username, password], (error, result) => {
         if (error) throw error;
         res.send({ message: '注册成功', code: 1 });
       })
@@ -164,22 +190,22 @@ server.post('/register', (req, res) => {
   })
 });
 
+
 //用户登录的接口
 server.post('/login', (req, res) => {
   //获取用户名和密码
-  let uname = req.body.username;
-  let upwd = req.body.password;
+  let username = req.body.username;
+  let password = req.body.password;
   //以用户名和密码为条件进行查找
-  let sql = 'SELECT uname,upwd FROM user WHERE username=? AND password=MD5(?)';
-  pool.query(sql, [uname, upwd], (error, results) => {
+  let sql = 'SELECT uname,upwd FROM user WHERE uname=? AND upwd=MD5(?)';
+  pool.query(sql, [username, password], (error, result) => {
     if (error) throw error;
-    if (results.length == 0) {
+    if (result.length == 0) {
       res.send({ message: '登录失败', code: 0 });
     } else {
-      res.send({ message: '登录成功', code: 1, userInfo: results[0] });
+      res.send({ message: '登录成功', code: 1, userInfo: result });
     }
   });
-
 });
 
 // 搜索接口、
