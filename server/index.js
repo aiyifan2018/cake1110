@@ -46,6 +46,9 @@ server.use(bodyParser.urlencoded({
 
 var http = require('http').createServer(server);
 var io = require('socket.io')(http);
+http.listen(3000,function(){
+  console.log("9999999999")
+});
 // socket业务逻辑
 io.on('connection', socket => {
     console.log("11111111111");
@@ -229,5 +232,5 @@ server.get('/cake',(req,res)=>{
  });
 });
 // 指定WEB服务器监听的端口
-server.listen(3000);
+
 
