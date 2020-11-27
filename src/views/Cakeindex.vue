@@ -171,18 +171,19 @@
 import areaList from '../assets/area/area.js';
 import { Toast } from 'vant';
 export default {
-   
   data() {
     return {
+      show:false,
+      	areaList,
+				overlay: false,
+				isShow:true,
       select:"index",
       page:2,
       cakedetails:[],
       brand:[],
       bannerImage:[],
-      	areaList,
-				overlay: false,
-				isShow:true,
-				show:false
+      
+				
     }
   },
   mounted() {
@@ -216,6 +217,7 @@ export default {
                 return val;
       },
 			 showPopup() {
+         console.log("888")
           this.show = true;
           this.overlay = true;
       },
