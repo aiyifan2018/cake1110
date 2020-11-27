@@ -9,7 +9,6 @@
       </div>
       <div id="search" slot="right">
         <router-link to="/cakesearch" class="shortcut">
-          <!-- <mt-search placeholder="搜索你喜欢的蛋糕" readonly></mt-search> -->
           <input type="text" placeholder="搜索你喜欢的蛋糕" />
         </router-link>
       </div>
@@ -26,7 +25,7 @@
                 :key="index"
                 @click="brand_goto(brand.bname)"
               >
-                <img :src="require('../assets/brand/' + brand.pic)" alt="" />
+                <img :src="brand.pic" alt="" />
               </div>
               <router-link to="/cakelist/全部">
                 <div class="all">查看全部</div>
@@ -60,7 +59,7 @@
                 :key="index"
                 @click="flavour_goto(flavour.sname)"
               >
-                <img :src="require('../assets/' + flavour.pic)" alt="" />
+                <img :src="flavour.pic" alt="" />
                 <p>{{ flavour.sname }}</p>
               </div>
             </div>
@@ -142,15 +141,6 @@
   background-color: #ddd;
   padding: 5px 10px;
 }
-/* #search .mint-search {
-  width: 240px;
-  height: 40px;
-  padding-bottom: 8px;
-  margin-bottom: 20px;
-}
-div.mint-searchbar {
-  background-color: #ff0;
-} */
 #search input {
   background: url(../assets/sort/search.png) no-repeat 1% center;
   padding: 8px 30px;
@@ -242,26 +232,26 @@ export default {
   mounted() {
     this.axios.get("/brand").then((res) => {
       let data = res.data.results;
-      // data.forEach((item) => {
-      //   // if (item.pic != null) {
-      //   //   item.pic = require("../assets/" + item.pic);
-      //   // }
-      //   this.brand.push(item);
-      //   //  console.log(item);
-      // });
+      data.forEach((item) => {
+        if (item.pic != null) {
+          item.pic = require("../assets/brand/" + item.pic);
+        }
+        this.brand.push(item);
+        //  console.log(item);
+      });
       this.brand = res.data.results;
       console.log(this.brand);
     });
     this.axios.get("/sort").then((res) => {
       let data = res.data.results;
-      // data.forEach((item) => {
-      //   // if (item.pic != null) {
-      //   //   item.pic = require("../assets/" + item.pic);
-      //   // }
-      //   console.log(item);
-      //   this.flavour.push(item);
-      //   console.log(this.flavour);
-      // });
+      data.forEach((item) => {
+        if (item.pic != null) {
+          item.pic = require("../assets/" + item.pic);
+        }
+        console.log(item);
+        this.flavour.push(item);
+        console.log(this.flavour);
+      });
       this.flavour = res.data.results;
       console.log(this.flavour);
     });
