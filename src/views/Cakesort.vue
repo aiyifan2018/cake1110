@@ -8,7 +8,7 @@
         </select>
       </div>
       <div id="search" slot="right">
-        <router-link to="/search" class="shortcut">
+        <router-link to="/cakesearch" class="shortcut">
           <!-- <mt-search placeholder="搜索你喜欢的蛋糕" readonly></mt-search> -->
           <input type="text" placeholder="搜索你喜欢的蛋糕" />
         </router-link>
@@ -34,11 +34,11 @@
             <h2 class="h2">—— 人群 ——</h2>
             <div id="people-list">
               <div id="people-list-item">
-                <router-link to="/cakelist">
+                <router-link to="/cakelist/送恋人朋友">
                   <img src="../assets/img/004.jpg" alt="" />
                   <p>送恋人朋友</p>
                 </router-link>
-                <router-link to="/cakelist">
+                <router-link to="/cakelist/送老人">
                   <img src="../assets/img/5013003.jpg" alt="">
                   <p>送老人</p>
                 </router-link>
@@ -89,7 +89,7 @@
           v-if="select == 'shopping'"
         />
         <img src="../assets/icon/shopping1.png" slot="icon" v-else />
-        <router-link to="/shopping">购物车</router-link>
+        <router-link to="/shoppingcart">购物车</router-link>
       </mt-tab-item>
       <mt-tab-item id="mine">
         <img src="../assets/icon/me2.png" slot="icon" v-if="select == 'mine'" />

@@ -1,7 +1,7 @@
 <template>
     <div class="details">
         <mt-header title="美丽家蛋糕" fixed>
-            <router-link to="/catesort" slot="left">
+            <router-link to="/cakesort" slot="left">
               <mt-button icon="back"></mt-button>
             </router-link>
             <mt-button icon="more" slot="right"></mt-button>
@@ -56,7 +56,7 @@
             </div>
             <mt-popup v-model="popupVisible" position="bottom" >
                 <div class="details_list">
-                    <div class="popup">
+                    <div class="popup" v-if="category.mini_pic">
                         <img  :src="require('../assets/img/'+category.mini_pic)" alt="">
                     </div>
                     <div class="list">
@@ -90,7 +90,7 @@
                     <van-goods-action-icon icon="chat-o" text="客服"  dot />
                     <van-goods-action-icon icon="cart-o" text="购物车" to="/cakecart" dot/>
                     <van-goods-action-button  text="加入购物车" to="/cakecart" />
-                    <van-goods-action-button   type="danger" text="立即购买" to="/cakecart"/>
+                    <van-goods-action-button   type="danger" text="立即购买" to="/shoppingcart"/>
                   </van-goods-action>
             </mt-popup>  
         </div>
@@ -215,7 +215,7 @@
             let id = this.$route.params.id;
             this.axios.get('/cakeDetails?id='+id).then(res=>{
                 this.category = res.data.results[0];
-                console.log(this.category);
+                console.log("-",this.category);
                 let cid=this.category.series_id;
                 console.log(cid)
                 this.axios.get('/cakeDetails_series?cid='+cid).then(res=>{
@@ -229,6 +229,7 @@
         onClickBigBtn(){
             let id = this.$route.params.id;
             console.log(id)
+                alert("添加成功")
             this.axios.get('/addcart?id='+id).then(res=>{
                 let cart = res.data.results;
                 console.log(cart)

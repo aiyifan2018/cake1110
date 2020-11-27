@@ -102,7 +102,7 @@
       <mt-tab-item id="shopping">
         <img src="../assets/icon/shopping2.png" slot="icon" v-if="select=='shopping'">
         <img src="../assets/icon/shopping1.png" slot="icon" v-else>
-        <router-link to="/shoppingcart/1">购物车</router-link>
+        <router-link to="/shoppingcart">购物车</router-link>
       </mt-tab-item>
       <mt-tab-item id="mine">
         <img src="../assets/icon/me2.png" slot="icon" v-if="select=='me'">

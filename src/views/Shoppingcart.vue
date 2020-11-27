@@ -90,11 +90,11 @@ export default {
 }
 .checkbox{
   padding:5px;
-  font-size:20px;
+  font-size:16px;
 }
 .checkbox input{
-  width:18px;
-  height:18px;
+  width:16px;
+  height:16px;
 }
   #select{
     margin:10px;
@@ -106,12 +106,12 @@ export default {
     background: #e8e8e8;
     display: block;
     padding:10px;
-    font-size: 25px;
+    font-size: 20px;
     width: 100%;
   }
   .jiesuan{
     display: block;
-    font-size: 25px;
+    font-size: 20px;
     background-color: green;
     border-radius:5px;
     padding:10px;
@@ -129,13 +129,13 @@ export default {
   .abc002{
     background-color: #e8e8e8;
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;
     text-align: center;
     width: 30px;
   }
   #title{
     padding:5px;
-    font-size:20px;
+    font-size:16px;
     text-align: center;
   }
   #item{
@@ -150,8 +150,8 @@ export default {
     padding: 5px;
   }
   .img{
-    width:150px;
-    height:150px;
+    width:120px;
+    height:120px;
     border-radius:10px;
   }
 </style>
