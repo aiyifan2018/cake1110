@@ -2,7 +2,13 @@
   <div class="cakeindex">
     <!-- 顶部选项卡开始 -->
     <mt-header title="美丽家蛋糕" fixed>
-      <span slot="left">北京东城区</span>
+      <span slot="left">
+         <van-cell is-link @click="showPopup" class="details_address">配送至{{province}} {{city}}  {{country}}</van-cell>
+          <van-popup v-model="show" position="top" :style="{ height: '50%' }">
+            <van-area :area-list="areaList" :columns-num="3" ref="myArea"
+            @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
+        </van-popup> 
+      </span>
         <router-link to="/cakesearch" slot="right"><img src="../assets/sort/search.png" alt=""></router-link>
     </mt-header>
     <!-- 顶部选项卡结束 -->
@@ -66,7 +72,7 @@
     <div class="recommend">
       <h1>热销推荐蛋糕</h1>
       <div>
-        <router-link :to="`/details/${item.did}`" v-for="(item, index) in cakedetails" :key="index">
+        <router-link :to="`/cakeDetails/${item.did}`" v-for="(item, index) in cakedetails" :key="index">
           <ul>
             <li><img :src="require('../assets/img/'+item.mini_pic)"></li>
             <li>{{item.dname}}</li>
@@ -75,7 +81,7 @@
           </ul>
         </router-link>
       </div>
-      <router-link to="/cakelist">查看全部蛋糕<i class="iconfont icon-xiangyou"></i></router-link>
+      <router-link to="/cakelist/全部">查看全部蛋糕<i class="iconfont icon-xiangyou"></i></router-link>
     </div>
     <!-- 热销推荐蛋糕结束 -->
     <!-- 回到顶部开始 -->
@@ -96,12 +102,12 @@
       <mt-tab-item id="shopping">
         <img src="../assets/icon/shopping2.png" slot="icon" v-if="select=='shopping'">
         <img src="../assets/icon/shopping1.png" slot="icon" v-else>
-        <router-link to="/">购物车</router-link>
+        <router-link to="/shoppingcart/1">购物车</router-link>
       </mt-tab-item>
-      <mt-tab-item id="me">
+      <mt-tab-item id="mine">
         <img src="../assets/icon/me2.png" slot="icon" v-if="select=='me'">
         <img src="../assets/icon/me1.png" slot="icon" v-else>
-        <router-link to="/me">我的</router-link>
+        <router-link to="/mine">我的</router-link>
       </mt-tab-item>
     </mt-tabbar>
     <!-- 底部选项卡结束 -->
@@ -162,7 +168,10 @@
     .myTabbar.mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700;}
 </style>
 <script>
+import areaList from '../assets/area/area.js';
+import { Toast } from 'vant';
 export default {
+   
   data() {
     return {
       select:"index",
@@ -170,6 +179,10 @@ export default {
       cakedetails:[],
       brand:[],
       bannerImage:[],
+      	areaList,
+				overlay: false,
+				isShow:true,
+				show:false
     }
   },
   mounted() {
@@ -186,5 +199,26 @@ export default {
       this.bannerImage=res.data.results;
     });
   },
+  methods:{
+   
+			onCancel() {
+                this.show = false;
+                this.$refs.myArea.reset()
+        },
+			 onConfirm(val) {
+                this.province= val[0].name,
+                this.city=val[1].name,
+                this.country=val[2].name;
+                this.show = false;
+             },
+			onChange(picker) {
+                let val = picker.getValues();
+                return val;
+      },
+			 showPopup() {
+          this.show = true;
+          this.overlay = true;
+      },
+  }
 }
 </script>

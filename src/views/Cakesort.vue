@@ -14,102 +14,100 @@
         </router-link>
       </div>
     </mt-header>
+    <!-- 面板区域开始 -->
     <div id="container">
-      <div id="brand">
-        <h2 class="p">—— 品牌 ——</h2>
-        <img src="" alt="" />
-      </div>
-      <div id="people">
-        <h2 class="p">—— 人群 ——</h2>
-        <div id="people-list">
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>送恋人朋友</p>
+      <mt-tab-container>
+        <mt-tab-container-item>
+          <div id="brand">
+            <h2 class="h2">—— 品牌 ——</h2>
+            <div id="brand-list">
+              <div
+                v-for="(brand, index) of brand"
+                :key="index"
+                @click="brand_goto(brand.bname)"
+              >
+                <img :src="brand.pic" alt="" />
+              </div>
+            </div>
           </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>送老人</p>
+          <div id="people">
+            <h2 class="h2">—— 人群 ——</h2>
+            <div id="people-list">
+              <div id="people-list-item">
+                <router-link to="/cakelist">
+                  <img src="../assets/img/004.jpg" alt="" />
+                  <p>送恋人朋友</p>
+                </router-link>
+                <router-link to="/cakelist">
+                  <img src="../assets/img/5013003.jpg" alt="">
+                  <p>送老人</p>
+                </router-link>
+                <router-link to="/cakelist/送儿童">
+                  <img src="../assets/img/5012002.jpg_220x240.jpg" alt="">
+                  <p>送儿童</p>
+                </router-link>
+              </div>
+            </div>
           </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>送儿童</p>
+          <div id="flavour">
+            <h2 class="h2">—— 口味 ——</h2>
+            <div id="flavour-list">
+              <div v-for="(flavour, index) of flavour" :key="index" @click="flavour_goto(flavour.sname)">
+                <img :src="flavour.pic" alt="" />
+                <p>{{ flavour.sname }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div id="flavour">
-        <h2>—— 口味 ——</h2>
-        <div id="flavour-list">
-          <div>
-            <img src="../assets/sort/5131001.jpg_220x240.jpg" alt="" />
-            <p>鲜奶蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>水果蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>巧克力蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>慕斯蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>冰激凌蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>抹茶蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>提拉米苏蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>拿破仑蛋糕</p>
-          </div>
-          <div>
-            <img src="../assets/sort/5901084.jpg_220x240.jpg" alt="" />
-            <p>芝士蛋糕</p>
-          </div>
-        </div>
-      </div>
+        </mt-tab-container-item>
+      </mt-tab-container>
     </div>
+    <!-- 面板区域结束 -->
     <!-- 底部选项卡开始 -->
     <mt-tabbar fixed class="myTabbar" v-model="select">
       <mt-tab-item id="index">
-        <img src="../assets/icon/index2.png" slot="icon" v-if="select=='index'">
-        <img src="../assets/icon/index1.png" slot="icon" v-else>
+        <img
+          src="../assets/icon/index2.png"
+          slot="icon"
+          v-if="select == 'index'"
+        />
+        <img src="../assets/icon/index1.png" slot="icon" v-else />
         <router-link to="/">首页</router-link>
       </mt-tab-item>
       <mt-tab-item id="sort">
-        <img src="../assets/icon/sort2.png" slot="icon" v-if="select=='sort'">
-        <img src="../assets/icon/sort1.png" slot="icon" v-else>
+        <img
+          src="../assets/icon/sort2.png"
+          slot="icon"
+          v-if="select == 'sort'"
+        />
+        <img src="../assets/icon/sort1.png" slot="icon" v-else />
         <router-link to="/cakesort">分类</router-link>
       </mt-tab-item>
       <mt-tab-item id="shopping">
-        <img src="../assets/icon/shopping2.png" slot="icon" v-if="select=='shopping'">
-        <img src="../assets/icon/shopping1.png" slot="icon" v-else>
-        <router-link to="/">购物车</router-link>
+        <img
+          src="../assets/icon/shopping2.png"
+          slot="icon"
+          v-if="select == 'shopping'"
+        />
+        <img src="../assets/icon/shopping1.png" slot="icon" v-else />
+        <router-link to="/shopping">购物车</router-link>
       </mt-tab-item>
-      <mt-tab-item id="me">
-        <img src="../assets/icon/me2.png" slot="icon" v-if="select=='me'">
-        <img src="../assets/icon/me1.png" slot="icon" v-else>
-        <router-link to="/me">我的</router-link>
+      <mt-tab-item id="mine">
+        <img src="../assets/icon/me2.png" slot="icon" v-if="select == 'mine'" />
+        <img src="../assets/icon/me1.png" slot="icon" v-else />
+        <router-link to="/mine">我的</router-link>
       </mt-tab-item>
     </mt-tabbar>
     <!-- 底部选项卡结束 -->
   </div>
 </template>
 <style scoped>
-h2{
-  margin:0;
-  padding:10px 0;
-  color:#333;
-  font-weight:normal;
+.h2 {
+  margin: 0;
+  padding: 10px 0;
+  color: #333;
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
 }
 .shortcut {
   text-decoration: none;
@@ -138,53 +136,110 @@ div.mint-searchbar {
 #search input {
   background: url(../assets/sort/search.png) no-repeat 1% center;
   padding: 8px 30px;
-  margin-bottom: 10px;
+  margin: 10px;
   border: 1px solid #ccc;
 }
 #brand,
 #people,
 #flavour {
-  /* width:300px; */
-  /* height:300px; */
   background-color: #fff;
   border-radius: 20px;
   padding-top: 10px;
   margin: 15px 0;
-  font-size:14px;
+  font-size: 14px;
 }
-#people-list,
+#brand-list,
 #flavour-list {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-#people-list > div,
-#flavour-list > div {
+.brand {
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
   padding: 0 10px;
 }
-#people-list > div > img,
+#brand-list > div img {
+  width: 100px;
+}
+#people-list-item{
+  display:flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+#people-list-item img{
+  width:100px;
+}
+#people-list-item p{
+  text-align:center;
+  color:#000;
+  padding-bottom:10px;
+}
+#flavour-list > div {
+  padding: 10px 10px;
+  text-align: center;
+}
 #flavour-list > div > img {
   width: 80px;
   height: 80px;
   border-radius: 50%;
+  padding: 10px 0;
 }
-.myTabbar .mint-tabbar{background-color: #eaeaea;}
-.myTabbar a{color: #8a8a8a;}
-.myTabbar.mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700;}
+/* 底部选项卡的样式 */
+.myTabbar .mint-tabbar {
+  background-color: #eaeaea;
+}
+.myTabbar a {
+  color: #8a8a8a;
+}
+.myTabbar .mint-tabbar > .mint-tab-item.is-selected a {
+  color: #ff6700;
+}
 </style>
 <script>
 export default {
   data() {
     return {
-      task:'',
-      select:"sort",
-    }
+      select: "sort",
+      brand: [],
+      flavour: [],
+    };
   },
   methods: {
-    add(){
-      this.bus.$emit("add_task",this.task);
-      this.task="";
+    brand_goto(kw) {
+      this.$router.push({path: '/cakelist/'+kw});
+    },
+    flavour_goto(kw){
+       this.$router.push({path: '/cakelist/'+kw})
     }
   },
-}
+  mounted() {
+    // 获取品牌的
+    this.axios.get("/brand").then((res) => {
+      let data = res.data.results;
+      data.forEach((item) => {
+        if (item.pic != null) {
+          item.pic = require("../assets/brand/" + item.pic);
+        }
+        this.brand.push(item);
+      });
+      this.brand = res.data.results;
+    });
+    // 获取口味的
+    this.axios.get("/sort").then((res) => {
+      let data = res.data.results;
+      data.forEach((item) => {
+        if (item.pic != null) {
+          item.pic = require("../assets/" + item.pic);
+        }
+        this.flavour.push(item);
+      });
+      this.flavour = res.data.results;
+    });
+  },
+};
 </script>
