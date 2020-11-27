@@ -10,28 +10,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   //个页面中共享的状态
-  // state: {
-  //   isLogined:localStorage.getItem("isLogined") || 0,
-  //   //存储用户登录的信息
-  //   userinfo:JSON.parse(localStorage.getItem("userinfo")) || {}
-    
-  // },
+  state: {
+    isLogined:localStorage.getItem("isLogined") ,
+    //存储用户登录的信息
+    userInfo:JSON.parse(localStorage.getItem("userInfo")) 
+  },
   mutations: {
-    //state代表store中的所有stare
     logined_mutations(state,payload){
-    
       //修改登录状态
        
       state.isLogined=1,
       //修改用户的登录信息
-      state.userinfo=payload
-     
+      state.userInfo=payload
     },
-    logout_mutations(state){
-      state.isLogined=0;
-      state.userinfo={};
-    
-     }
+   
   },
   actions: {
     login_action(context,payload){ 
@@ -39,11 +31,10 @@ export default new Vuex.Store({
         //用户登录成功
         if(res.data.code==1){
           //提交
-          // context.commit("logined_mutations",res.data.userinfo)
-          // localStorage.setItem("isLogined",1)
-          console.log(res);
-          localStorage.setItem("userinfo",JSON.stringify(res.data.userInfo))
-          router.push("/")
+          context.commit("logined_mutations",res.data.userInfo)
+          localStorage.setItem("isLogined",1)
+          localStorage.setItem("userInfo",JSON.stringify(res.data.userInfo))
+          router.push("/mine")
         }else{
           MessageBox("登录提示","用户名或密码错误")
         }

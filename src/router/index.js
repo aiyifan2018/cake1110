@@ -9,9 +9,10 @@ import Kefu from '../views/Kefu.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import CakeList from '../views/CakeList.vue'
-import Shoppingcart from '../views/Shoppingcart.vue'
-import Pay from '../views/pay.vue'
-import ok from '../views/ok.vue'
+import Setup from '../views/Setup.vue'
+import Shoppingcart from '../views/Shoppingcart.vue'
+import Pay from '../views/pay.vue'
+import ok from '../views/ok.vue'
 import cakesearch from '../views/CakeSearch.vue'
 import cakenofound from '../views/CakeNofound.vue'
 
@@ -52,6 +53,11 @@ const routes = [{
   }, {
     path: '/cakeDetails/:id',
     component: Details
+  },
+  {
+    path:'/setup',
+    component:Setup
+
   },
 
   {

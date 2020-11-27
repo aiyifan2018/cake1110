@@ -271,8 +271,8 @@ CREATE TABLE cakes(
   checked BOOL
 );
 
-INSERT INTO cakes VALUES(NULL,'蝶恋花景','picture/001.jpg','58.5','8寸','圆形','鲜奶','2020-11-07',1,0);
-INSERT INTO cakes VALUES(NULL,'清风徐来','picture/002.jpg','67.8','10寸','圆形','慕斯','2020-11-07',1,0);
-INSERT INTO cakes VALUES(NULL,'心之恋情','picture/003.jpg','48.8','6寸','半圆形','草莓','2020-11-07',1,0);
-INSERT INTO cakes VALUES(NULL,'甜蜜如心','picture/004.jpg','73.2','8寸','圆形','巧克力','2020-11-07',1,0);
-INSERT INTO cakes VALUES(NULL,'情有独钟','picture/007.jpg','45.8','4寸','三角形','牛奶','2020-11-07',1,0);
+INSERT INTO cakes VALUES(NULL,'蝶恋花景','001.jpg','58.5','8寸','圆形','鲜奶','2020-11-07',1,0);
+INSERT INTO cakes VALUES(NULL,'清风徐来','002.jpg','67.8','10寸','圆形','慕斯','2020-11-07',1,0);
+INSERT INTO cakes VALUES(NULL,'心之恋情','003.jpg','48.8','6寸','半圆形','草莓','2020-11-07',1,0);
+INSERT INTO cakes VALUES(NULL,'甜蜜如心','004.jpg','73.2','8寸','圆形','巧克力','2020-11-07',1,0);
+INSERT INTO cakes VALUES(NULL,'情有独钟','007.jpg','45.8','4寸','三角形','牛奶','2020-11-07',1,0);

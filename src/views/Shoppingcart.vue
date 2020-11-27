@@ -13,7 +13,7 @@
       <div id="item">
          <input type="checkbox" id="select" v-model="cakeInfo.checked"/>
          <span>
-            <img class="img" :src="require('../assets/'+cakeInfo.pic)">
+            <img class="img" :src="require('../assets/picture/'+cakeInfo.pic)">
          </span>
          <span id="content">
            <div>规格：{{cakeInfo.size}}寸</div>

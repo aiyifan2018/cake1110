@@ -96,9 +96,8 @@ server.get('/addcart', (req, res) => {
     if (results.length > 0) {
       console.log(results[0].count=1)
       console.log(results[0].checked=0)
-      // var {title,mini_pic,price,size,shape,ingredients,add_time,count,checked} = results[0];
-      // console.log(title,mini_pic,price,size,shape,ingredients,add_time,count,checked)
       let sql = "insert into cakes set ?"
+      console.log(results[0])
       pool.query(sql, [results[0]], (err, result) => {
         console.log(sql) 
         console.log("-----",result);

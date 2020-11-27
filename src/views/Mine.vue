@@ -1,10 +1,13 @@
 <template>
   <div>   
     <div class="backtop">
-      <router-link to="/" class="routerLink">
+      <router-link to="/Setup" class="routerLink">
         <img src="../../public/img/icons/setup.png" alt="">
       </router-link><br>
-      <router-link to="/register">
+      <router-link to="/setup" v-if="this.$store.state.isLogined==1">
+        <mt-button type="danger"  class="relogin">欢迎,{{this.$store.state.userInfo[0].uname}}</mt-button>
+      </router-link>
+      <router-link to="/register" v-else>
         <mt-button type="danger"  class="relogin">登录/注册</mt-button>
       </router-link>
     </div>
@@ -17,16 +20,24 @@
         <hr class="hrs" />
       </div>
       <ul class="payment">
-        <li><img src="../../public/img/icons/paid.png" slot="icon">
-          <p>待付款</p>  
+        <li>
+          <router-link to="/">
+            <img src="../../public/img/icons/paid.png">
+            <p>待付款</p> 
+          </router-link>          
         </li>
         <li>
-          <img src="../../public/img/icons/delivered.png" slot="icon">
-          <p>今日配送</p>         
+          <router-link to="/">
+            <img src="../../public/img/icons/delivered.png">
+            <p>今日配送</p> 
+          </router-link>          
         </li>
         <li>
-          <img src="../../public/img/icons/evaluated.png" slot="icon">
-          <p>待评价</p>  
+          <router-link to="/">
+            <img src="../../public/img/icons/evaluated.png">
+            <p>待评价</p>  
+          </router-link>
+          
         </li>
       </ul>
     </div>
@@ -34,60 +45,37 @@
   
     <ul class="about">
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/coupon.png">
           优惠劵
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/address.png">
           收货地址
         </router-link>
       </li>
        <li>
+         
         <router-link to="/kefu">
           <img src="../../public/img/icons/customer.png">
           联系客服
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/problem.png">
           常见问题
         </router-link>
       </li>
       <li>
-        <router-link to="/">
+        <router-link to="/login">
           <img src="../../public/img/icons/about.png">
           关于我们
         </router-link>
       </li>
     </ul>
-    <!-- 底部选项卡开始 -->
-    <mt-tabbar fixed class="myTabbar" v-model="select">
-      <mt-tab-item id="index">
-        <img src="../assets/icon/index2.png" slot="icon" v-if="select=='index'">
-        <img src="../assets/icon/index1.png" slot="icon" v-else>
-        <router-link to="/">首页</router-link>
-      </mt-tab-item>
-      <mt-tab-item id="sort">
-        <img src="../assets/icon/sort2.png" slot="icon" v-if="select=='sort'">
-        <img src="../assets/icon/sort1.png" slot="icon" v-else>
-        <router-link to="/cakesort">分类</router-link>
-      </mt-tab-item>
-      <mt-tab-item id="shopping">
-        <img src="../assets/icon/shopping2.png" slot="icon" v-if="select=='shopping'">
-        <img src="../assets/icon/shopping1.png" slot="icon" v-else>
-        <router-link to="/shoppingcart">购物车</router-link>
-      </mt-tab-item>
-      <mt-tab-item id="mine">
-        <img src="../assets/icon/me2.png" slot="icon" v-if="select=='mine'">
-        <img src="../assets/icon/me1.png" slot="icon" v-else>
-        <router-link to="/mine">我的</router-link>
-      </mt-tab-item>
-    </mt-tabbar>
-    <!-- 底部选项卡结束 -->
   </div>
 </template>
 <style scoped>
@@ -169,17 +157,17 @@ a{
     list-style: none;
     text-decoration: none;
   }
-  /* 底部选项卡的样式 */
-  .myTabbar .mint-tabbar{background-color: #eaeaea;}
-  .myTabbar a{color: #8a8a8a;}
-  .myTabbar.mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700 !important;}
+  
 </style>
 <script>
 export default {
-  data() {
+  data(){
     return {
-      select:"mine"
+
     }
   },
+  methods:{
+    
+  }
 }
 </script>
