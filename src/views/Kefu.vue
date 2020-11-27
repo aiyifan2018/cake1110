@@ -49,8 +49,10 @@
 			console.log(localStorage.getItem("userinfo"))
 			if(localStorage.getItem("userinfo")===undefined){
 				this.uname = "1234"
-			}else{
-          this.uname = JSON.parse(localStorage.getItem("userinfo"))[0].uname;
+			}else{ 
+			
+					this.uname = JSON.parse(localStorage.getItem("userinfo"))[0].uname;
+						console.log(this.uname);
 			}
 			 
 			 
@@ -137,7 +139,7 @@
 						   </div>
 						 </div>
 						 `
-				} else {
+				} else { 
 					document.querySelector(".box-bd").innerHTML +=
 						`
 						 <div class="message-box" style="margin-bottom: 10px;">
@@ -192,6 +194,7 @@
 				if (!content.trim()) {
 					return;
 				}
+			 
 				this.$socket.emit("sendMessage", {
 					roomName: this.uname,
 					message: content
