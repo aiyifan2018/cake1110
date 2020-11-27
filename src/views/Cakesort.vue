@@ -2,10 +2,20 @@
   <div>
     <mt-header>
       <div slot="left">
-        <van-cell is-link @click="showPopup" class="details_address"><span v-if="!province">选择地址:</span>{{province}} {{city}}  {{country}}</van-cell>
-          <van-popup v-model="show" position="top" :style="{ height: '50%' }">
-            <van-area :area-list="areaList" :columns-num="3" ref="myArea"
-            @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
+        <van-cell is-link @click="showPopup" class="details_address"
+          ><span v-if="!province">选择地址:</span>{{ province }} {{ city }}
+          {{ country }}</van-cell
+        >
+        <van-popup v-model="show" position="top" :style="{ height: '50%' }">
+          <van-area
+            :area-list="areaList"
+            :columns-num="3"
+            ref="myArea"
+            @confirm="onConfirm"
+            @cancel="onCancel"
+            @change="onChange"
+            title="配送至"
+          />
         </van-popup>
       </div>
       <div id="search" slot="right">
@@ -127,16 +137,16 @@
 .select {
   border: none;
 }
-.all{
-  width:100px;
-  height:40px;
-  line-height:40px;
-  color:#000;
-  text-align:center;
-  font-size:20px;
-  border:1px dashed #ddd;
-  border-radius:10px;
-  padding:5px 0;
+.all {
+  width: 100px;
+  height: 40px;
+  line-height: 40px;
+  color: #000;
+  text-align: center;
+  font-size: 20px;
+  border: 1px dashed #ddd;
+  border-radius: 10px;
+  padding: 5px 0;
 }
 #container {
   background-color: #ddd;
@@ -212,29 +222,29 @@
 .myTabbar .mint-tabbar > .mint-tab-item.is-selected a {
   color: #ff6700;
 }
-.details_address{
-      font-size: 10px;
-      color: #666;
-      height: 40px;
-      width: 97px;
-    }
+.details_address {
+  font-size: 10px;
+  color: #666;
+  height: 40px;
+  width: 97px;
+}
 </style>
 <script>
-import areaList from '../assets/area/area.js';
-import { Toast } from 'vant';
+import areaList from "../assets/area/area.js";
+import { Toast } from "vant";
 export default {
   data() {
     return {
-       show:false,
-      	areaList,
-				overlay: false,
-				isShow:true,
+      show: false,
+      areaList,
+      overlay: false,
+      isShow: true,
       select: "sort",
       brand: [],
       flavour: [],
-      province:'', 
-      city:'',
-      country:''
+      province: "",
+      city: "",
+      country: "",
     };
   },
   methods: {
@@ -245,24 +255,23 @@ export default {
       this.$router.push({ path: "/Cakelist/" + sname });
     },
     onCancel() {
-                this.show = false;
-                this.$refs.myArea.reset()
-        },
-			 onConfirm(val) {
-                this.province= val[0].name,
-                this.city=val[1].name,
-                this.country=val[2].name;
-                this.show = false;
-             },
-			onChange(picker) {
-                let val = picker.getValues();
-                return val;
-      },
-      showPopup() {
-          this.show = true;
-          console.log("--------",this.show);
-          this.overlay = true;
-      }
+      this.show = false;
+      this.$refs.myArea.reset();
+    },
+    onConfirm(val) {
+      (this.province = val[0].name),
+        (this.city = val[1].name),
+        (this.country = val[2].name);
+      this.show = false;
+    },
+    onChange(picker) {
+      let val = picker.getValues();
+      return val;
+    },
+    showPopup() {
+      this.show = true;
+      this.overlay = true;
+    },
   },
   mounted() {
     this.axios.get("/brand").then((res) => {
@@ -272,10 +281,8 @@ export default {
           item.pic = require("../assets/brand/" + item.pic);
         }
         this.brand.push(item);
-        //  console.log(item);
       });
       this.brand = res.data.results;
-      console.log(this.brand);
     });
     this.axios.get("/sort").then((res) => {
       let data = res.data.results;
@@ -283,12 +290,9 @@ export default {
         if (item.pic != null) {
           item.pic = require("../assets/" + item.pic);
         }
-        console.log(item);
         this.flavour.push(item);
-        console.log(this.flavour);
       });
       this.flavour = res.data.results;
-      console.log(this.flavour);
     });
   },
 };
