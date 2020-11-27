@@ -2,7 +2,13 @@
   <div class="cakeindex">
     <!-- 顶部选项卡开始 -->
     <mt-header title="美丽家蛋糕" fixed>
-      <span slot="left">北京东城区</span>
+      <span slot="left">
+         <van-cell is-link @click="showPopup" class="details_address">配送至{{province}} {{city}}  {{country}}</van-cell>
+          <van-popup v-model="show" position="top" :style="{ height: '50%' }">
+            <van-area :area-list="areaList" :columns-num="3" ref="myArea"
+            @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
+        </van-popup> 
+      </span>
         <router-link to="/cakesearch" slot="right"><img src="../assets/sort/search.png" alt=""></router-link>
     </mt-header>
     <!-- 顶部选项卡结束 -->
@@ -162,7 +168,10 @@
     .myTabbar.mint-tabbar>.mint-tab-item.is-selected a{color: #ff6700;}
 </style>
 <script>
+import areaList from '../assets/area/area.js';
+import { Toast } from 'vant';
 export default {
+   
   data() {
     return {
       select:"index",
@@ -170,6 +179,10 @@ export default {
       cakedetails:[],
       brand:[],
       bannerImage:[],
+      	areaList,
+				overlay: false,
+				isShow:true,
+				show:false
     }
   },
   mounted() {
@@ -186,5 +199,26 @@ export default {
       this.bannerImage=res.data.results;
     });
   },
+  methods:{
+   
+			onCancel() {
+                this.show = false;
+                this.$refs.myArea.reset()
+        },
+			 onConfirm(val) {
+                this.province= val[0].name,
+                this.city=val[1].name,
+                this.country=val[2].name;
+                this.show = false;
+             },
+			onChange(picker) {
+                let val = picker.getValues();
+                return val;
+      },
+			 showPopup() {
+          this.show = true;
+          this.overlay = true;
+      },
+  }
 }
 </script>
