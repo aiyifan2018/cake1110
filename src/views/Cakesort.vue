@@ -2,10 +2,11 @@
   <div>
     <mt-header>
       <div slot="left">
-        <select name="city" size="1" class="select">
-          <option value="">请选择城市</option>
-          <option value="">北京</option>
-        </select>
+        <van-cell is-link @click="showPopup" class="details_address"><span v-if="!province">选择地址:</span>{{province}} {{city}}  {{country}}</van-cell>
+          <van-popup v-model="show" position="top" :style="{ height: '50%' }">
+            <van-area :area-list="areaList" :columns-num="3" ref="myArea"
+            @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
+        </van-popup>
       </div>
       <div id="search" slot="right">
         <router-link to="/cakesearch" class="shortcut">
@@ -211,14 +212,29 @@
 .myTabbar .mint-tabbar > .mint-tab-item.is-selected a {
   color: #ff6700;
 }
+.details_address{
+      font-size: 10px;
+      color: #666;
+      height: 40px;
+      width: 97px;
+    }
 </style>
 <script>
+import areaList from '../assets/area/area.js';
+import { Toast } from 'vant';
 export default {
   data() {
     return {
+       show:false,
+      	areaList,
+				overlay: false,
+				isShow:true,
       select: "sort",
       brand: [],
       flavour: [],
+      province:'', 
+      city:'',
+      country:''
     };
   },
   methods: {
@@ -228,6 +244,25 @@ export default {
     flavour_goto(sname) {
       this.$router.push({ path: "/Cakelist/" + sname });
     },
+    onCancel() {
+                this.show = false;
+                this.$refs.myArea.reset()
+        },
+			 onConfirm(val) {
+                this.province= val[0].name,
+                this.city=val[1].name,
+                this.country=val[2].name;
+                this.show = false;
+             },
+			onChange(picker) {
+                let val = picker.getValues();
+                return val;
+      },
+      showPopup() {
+          this.show = true;
+          console.log("--------",this.show);
+          this.overlay = true;
+      }
   },
   mounted() {
     this.axios.get("/brand").then((res) => {
