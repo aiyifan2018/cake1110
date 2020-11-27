@@ -8,7 +8,7 @@
         </select>
       </div>
       <div id="search" slot="right">
-        <router-link to="/search" class="shortcut">
+        <router-link to="/cakesearch" class="shortcut">
           <!-- <mt-search placeholder="搜索你喜欢的蛋糕" readonly></mt-search> -->
           <input type="text" placeholder="搜索你喜欢的蛋糕" />
         </router-link>
@@ -26,24 +26,27 @@
                 :key="index"
                 @click="brand_goto(brand.bname)"
               >
-                <img :src="brand.pic" alt="" />
+                <img :src="require('../assets/brand/' + brand.pic)" alt="" />
               </div>
+              <router-link to="/cakelist/全部">
+                <div class="all">查看全部</div>
+              </router-link>
             </div>
           </div>
           <div id="people">
             <h2 class="h2">—— 人群 ——</h2>
             <div id="people-list">
               <div id="people-list-item">
-                <router-link to="/cakelist">
+                <router-link to="/cakelist/送恋人朋友">
                   <img src="../assets/img/004.jpg" alt="" />
                   <p>送恋人朋友</p>
                 </router-link>
-                <router-link to="/cakelist">
-                  <img src="../assets/img/5013003.jpg" alt="">
+                <router-link to="/cakelist/送老人">
+                  <img src="../assets/img/5013003.jpg" alt="" />
                   <p>送老人</p>
                 </router-link>
                 <router-link to="/cakelist/送儿童">
-                  <img src="../assets/img/5012002.jpg_220x240.jpg" alt="">
+                  <img src="../assets/img/5012002.jpg_220x240.jpg" alt="" />
                   <p>送儿童</p>
                 </router-link>
               </div>
@@ -52,8 +55,12 @@
           <div id="flavour">
             <h2 class="h2">—— 口味 ——</h2>
             <div id="flavour-list">
-              <div v-for="(flavour, index) of flavour" :key="index" @click="flavour_goto(flavour.sname)">
-                <img :src="flavour.pic" alt="" />
+              <div
+                v-for="(flavour, index) of flavour"
+                :key="index"
+                @click="flavour_goto(flavour.sname)"
+              >
+                <img :src="require('../assets/' + flavour.pic)" alt="" />
                 <p>{{ flavour.sname }}</p>
               </div>
             </div>
@@ -89,10 +96,10 @@
           v-if="select == 'shopping'"
         />
         <img src="../assets/icon/shopping1.png" slot="icon" v-else />
-        <router-link to="/shopping">购物车</router-link>
+        <router-link to="/shoppingcart">购物车</router-link>
       </mt-tab-item>
-      <mt-tab-item id="mine">
-        <img src="../assets/icon/me2.png" slot="icon" v-if="select == 'mine'" />
+      <mt-tab-item id="me">
+        <img src="../assets/icon/me2.png" slot="icon" v-if="select == 'me'" />
         <img src="../assets/icon/me1.png" slot="icon" v-else />
         <router-link to="/mine">我的</router-link>
       </mt-tab-item>
@@ -119,6 +126,17 @@
 }
 .select {
   border: none;
+}
+.all{
+  width:100px;
+  height:40px;
+  line-height:40px;
+  color:#000;
+  text-align:center;
+  font-size:20px;
+  border:1px dashed #ddd;
+  border-radius:10px;
+  padding:5px 0;
 }
 #container {
   background-color: #ddd;
@@ -165,19 +183,20 @@ div.mint-searchbar {
 }
 #brand-list > div img {
   width: 100px;
+  padding: 10px 0;
 }
-#people-list-item{
-  display:flex;
+#people-list-item {
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
-#people-list-item img{
-  width:100px;
+#people-list-item img {
+  width: 100px;
 }
-#people-list-item p{
-  text-align:center;
-  color:#000;
-  padding-bottom:10px;
+#people-list-item p {
+  text-align: center;
+  color: #000;
+  padding-bottom: 10px;
 }
 #flavour-list > div {
   padding: 10px 10px;
@@ -188,6 +207,9 @@ div.mint-searchbar {
   height: 80px;
   border-radius: 50%;
   padding: 10px 0;
+}
+#flavour {
+  margin-bottom: 65px;
 }
 /* 底部选项卡的样式 */
 .myTabbar .mint-tabbar {
@@ -210,35 +232,38 @@ export default {
     };
   },
   methods: {
-    brand_goto(kw) {
-      this.$router.push({path: '/cakelist/'+kw});
+    brand_goto(bname) {
+      this.$router.push({ path: "/Cakelist/" + bname });
     },
-    flavour_goto(kw){
-       this.$router.push({path: '/cakelist/'+kw})
-    }
+    flavour_goto(sname) {
+      this.$router.push({ path: "/Cakelist/" + sname });
+    },
   },
   mounted() {
-    // 获取品牌的
     this.axios.get("/brand").then((res) => {
       let data = res.data.results;
-      data.forEach((item) => {
-        if (item.pic != null) {
-          item.pic = require("../assets/brand/" + item.pic);
-        }
-        this.brand.push(item);
-      });
+      // data.forEach((item) => {
+      //   // if (item.pic != null) {
+      //   //   item.pic = require("../assets/" + item.pic);
+      //   // }
+      //   this.brand.push(item);
+      //   //  console.log(item);
+      // });
       this.brand = res.data.results;
+      console.log(this.brand);
     });
-    // 获取口味的
     this.axios.get("/sort").then((res) => {
       let data = res.data.results;
-      data.forEach((item) => {
-        if (item.pic != null) {
-          item.pic = require("../assets/" + item.pic);
-        }
-        this.flavour.push(item);
-      });
+      // data.forEach((item) => {
+      //   // if (item.pic != null) {
+      //   //   item.pic = require("../assets/" + item.pic);
+      //   // }
+      //   console.log(item);
+      //   this.flavour.push(item);
+      //   console.log(this.flavour);
+      // });
       this.flavour = res.data.results;
+      console.log(this.flavour);
     });
   },
 };
