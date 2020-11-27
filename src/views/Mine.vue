@@ -45,13 +45,13 @@
   
     <ul class="about">
       <li>
-        <router-link to="/login">
+        <router-link to="/">
           <img src="../../public/img/icons/coupon.png">
           优惠劵
         </router-link>
       </li>
       <li>
-        <router-link to="/login">
+        <router-link to="/">
           <img src="../../public/img/icons/address.png">
           收货地址
         </router-link>
@@ -64,13 +64,13 @@
         </router-link>
       </li>
       <li>
-        <router-link to="/login">
+        <router-link to="/">
           <img src="../../public/img/icons/problem.png">
           常见问题
         </router-link>
       </li>
       <li>
-        <router-link to="/login">
+        <router-link to="/">
           <img src="../../public/img/icons/about.png">
           关于我们
         </router-link>
