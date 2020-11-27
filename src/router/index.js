@@ -9,36 +9,35 @@ import Kefu from '../views/Kefu.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import CakeList from '../views/CakeList.vue'
-import Shoppingcart from '../views/Shoppingcart.vue'
-import Pay from '../views/pay.vue'
-import ok from '../views/ok.vue'
+import Shoppingcart from '../views/Shoppingcart.vue'
+import Pay from '../views/pay.vue'
+import ok from '../views/ok.vue'
 import cakesearch from '../views/CakeSearch.vue'
 import cakenofound from '../views/CakeNofound.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Cakeindex',
     component: Cakeindex
-  },{
+  }, {
     path: '/cakeindex',
     name: 'Cakeindex',
     component: Cakeindex
-  },{
+  }, {
     path: '/cakesort',
     name: 'Cakesort',
     component: Cakesort
-  },{
+  }, {
     path: '/cakecart',
     name: 'CakeCart',
     component: CakeCart
-  },{
+  }, {
     path: '/mine',
     name: 'Mine',
     component: Mine
-  },{
+  }, {
     path: '/login',
     component: Login
   },
@@ -47,38 +46,38 @@ const routes = [
     component: Register
 
 
-  },{
-    path:'/cakelist/:kw',
-    component:CakeList
-  },{
-    path:'/cakeDetails/:id',
-    component:Details
+  }, {
+    path: '/cakelist/:kw',
+    component: CakeList
+  }, {
+    path: '/cakeDetails/:id',
+    component: Details
   },
 
-   {
-     path:'/shoppingcart/:cake',
-     name:'Shoppingcart',
-     component:Shoppingcart
-  },{
-    path:'/ok',
-    name:'ok',
-    component:ok
-  },{
-    path:'/Pay',
-    name:'Pay',
-    component:Pay
-  },{
-    path:'/kefu',
-    component:Kefu
-  },{
-    path:'/cakesearch',
-    component:cakesearch
-  },{
-    path:'/cakenofound',
-    component:cakenofound
+  {
+    path: '/shoppingcart',
+    name: 'Shoppingcart',
+    component: Shoppingcart
+  }, {
+    path: '/ok',
+    name: 'ok',
+    component: ok
+  }, {
+    path: '/Pay',
+    name: 'Pay',
+    component: Pay
+  }, {
+    path: '/kefu',
+    component: Kefu
+  }, {
+    path: '/cakesearch',
+    component: cakesearch
+  }, {
+    path: '/cakenofound',
+    component: cakenofound
   }
 
-  
+
   // {
   //   path:'/details',
   //   component:Details
@@ -96,5 +95,5 @@ const routes = [
 const router = new VueRouter({
   routes
 })
- 
+
 export default router

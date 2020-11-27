@@ -181,7 +181,7 @@
      <div class="details_end">
         <van-goods-action v-show=" isShow">
             <van-goods-action-icon icon="chat-o" text="客服"  dot />
-            <van-goods-action-icon icon="cart-o" text="购物车" to="`/cakecart/${item.did}`"  dot/>
+            <van-goods-action-icon icon="cart-o" text="购物车" to="/shoppingcart"  dot/>
             <van-goods-action-button @click="onClickBigBtn" text="加入购物车" />
             <van-goods-action-button to="/cakecart"  type="danger" text="立即购买" />
           </van-goods-action>
@@ -226,6 +226,14 @@
             })
         },
         methods: {
+        onClickBigBtn(){
+            let id = this.$route.params.id;
+            console.log(id)
+            this.axios.get('/addcart?id='+id).then(res=>{
+                let cart = res.data.results;
+                console.log(cart)
+            })
+        },
          onClickMiniBtn() {
             Toast('加入购物车成功');
           },

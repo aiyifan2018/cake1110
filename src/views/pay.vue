@@ -11,9 +11,11 @@
           <div class="top-address">地址：美国纽约州布鲁克林区</div>
     </div>
     <div>
-        <mt-field label="送达日期" placeholder="请输入" type="date" v-model="day">
+        <p class="datacom">选择送达时间：
+        <input type="date" placeholder="请输入送达时间" ></p>
+       <!-- <mt-field  placeholder="请输入" type="date" v-model="day">
             <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
-        </mt-field>
+        </mt-field> -->
         <mt-field label="订购人姓名" placeholder="请输入姓名" v-model="username"></mt-field>
         <mt-field label="留言" placeholder="选填" type="textarea" rows="4" v-model="introduction"></mt-field>
     </div>
@@ -21,7 +23,7 @@
         <!-- 选项卡开始 -->
         <!--id仅在此父元素组件内唯一即可，整个页面内id可不唯一，表示对应变量,vue中特有-->
         <div class="heji" >合计：¥{{this.$route.params.price}}</div>
-        <div class="jiesuan" ><router-link to="ok">去结算</router-link></div>       
+        <div class="jiesuan" ><router-link to="ok" class="jiesuana">去结算</router-link></div>       
     </div>
   </div>
 
@@ -65,6 +67,10 @@ export default {
 .href{
   text-decoration: none;
 }
+.datacom{
+  margin:10px;
+  font-size:16px;
+}
   .top div{
     /* padding-top: -55px; */
     margin-bottom: 0px;
@@ -82,14 +88,20 @@ export default {
   }
   .heji{
     background: #e8e8e8;
-    /* display: block; */
-    font-size: 25px;
+    font-size: 20px;
     width: 66%;
+    padding:10px;
   }
   .jiesuan{
     /* display: block; */
-    font-size: 25px;
-    background-color: lightblue;
-    width: 34%;
+    font-size: 20px;
+    background-color: green;
+    border-radius:5px;
+    padding:10px;
+    width: 30%;
+    text-align:center;
+  }
+  .jiesuana{
+    color:#fff;
   }
 </style>
