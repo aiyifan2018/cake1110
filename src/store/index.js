@@ -5,6 +5,8 @@ import router from '../router'
 import {MessageBox} from 'mint-ui'
 
 Vue.use(Vuex)
+ 
+ 
 
 export default new Vuex.Store({
   //个页面中共享的状态

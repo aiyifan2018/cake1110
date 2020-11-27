@@ -4,11 +4,16 @@ import Cakeindex from '../views/Cakeindex.vue'
 import Cakesort from '../views/Cakesort.vue'
 import CakeCart from '../views/CakeCart.vue'
 import Mine from '../views/Mine.vue'
+import Details from '../views/Details.vue'
+import Kefu from '../views/Kefu.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Search from '../components/Search.vue'
 import CakeList from '../views/CakeList.vue'
 import Setup from '../views/Setup.vue'
+import Shoppingcart from '../views/Shoppingcart.vue'
+import Pay from '../views/pay.vue'
+import ok from '../views/ok.vue'
 
 
 
@@ -51,15 +56,36 @@ const routes = [
 
 
   },{
-    path:'/cakelist',
+    path:'/cakelist/:kw',
     component:CakeList
-
+  },{
+    path:'/cakeDetails/:id',
+    component:Details
   },
   {
     path:'/setup',
     component:Setup
 
   },
+
+   {
+     path:'/shoppingcart/:cake',
+     name:'Shoppingcart',
+     component:Shoppingcart
+  },{
+    path:'/ok',
+    name:'ok',
+    component:ok
+  },{
+    path:'/Pay',
+    name:'Pay',
+    component:Pay
+  },{
+    path:'/kefu',
+    component:Kefu
+  }
+
+  
   // {
   //   path:'/details',
   //   component:Details
@@ -77,5 +103,5 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+ 
 export default router
