@@ -4,7 +4,7 @@
             <router-link to="/cakesort" slot="left">
               <mt-button icon="back"></mt-button>
             </router-link>
-            <mt-button icon="more" slot="right"></mt-button>
+            <router-link to="/cakesearch" slot="right"><mt-button icon="search"></mt-button></router-link>
           </mt-header>
         <!-- 上部轮播图开始 -->
         <div class="details_cake">
@@ -87,9 +87,9 @@
                     </div>
                 </div>
                 <van-goods-action v-show=" isShow">
-                    <van-goods-action-icon icon="chat-o" text="客服"  dot />
-                    <van-goods-action-icon icon="cart-o" text="购物车" to="/cakecart" dot/>
-                    <van-goods-action-button  text="加入购物车" to="/cakecart" />
+                    <van-goods-action-icon icon="chat-o" text="客服" to="/kefu" dot />
+                    <van-goods-action-icon icon="cart-o" text="购物车" to="/shoppingcart" dot/>
+                    <van-goods-action-button  text="加入购物车" @click="onClickBigBtn"  />
                     <van-goods-action-button   type="danger" text="立即购买" to="/shoppingcart"/>
                   </van-goods-action>
             </mt-popup>  
@@ -183,7 +183,7 @@
             <van-goods-action-icon icon="chat-o" text="客服"  to="/kefu" dot />
             <van-goods-action-icon icon="cart-o" text="购物车" to="/shoppingcart"  dot/>
             <van-goods-action-button @click="onClickBigBtn" text="加入购物车" />
-            <van-goods-action-button to="/cakecart"  type="danger" text="立即购买" />
+            <van-goods-action-button to="/shoppingcart"  type="danger" text="立即购买" />
           </van-goods-action>
      </div>
     </div>  
@@ -202,7 +202,7 @@
                 show: false,
                 overlay: false,
                 areaList,
-                province:'',
+                province:'请选择配送地址',
                 city:"",
                 country:'',
                 isShow:true,

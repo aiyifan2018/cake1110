@@ -82,6 +82,7 @@ export default {
    .bottom-bar{
     text-align: center;
     display: flex;
+    bottom: 10px;
   }
   .heji{
     background: #e8e8e8;

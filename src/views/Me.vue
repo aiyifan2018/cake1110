@@ -30,7 +30,7 @@
         </li>
       </ul>
     </div>
-      
+      <button class="del">X</button>
   
     <ul class="about">
       <li>

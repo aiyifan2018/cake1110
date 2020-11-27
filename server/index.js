@@ -109,6 +109,31 @@ server.get('/addcart', (req, res) => {
 
   })
 })
+// 删除购物车
+server.get('/del', (req, res) => {
+  var cid=req.query.cid;
+  console.log(cid)
+  //获取首页分类表中的全部数据
+  let sql = 'delete FROM cakes where cid=?';
+  //通过连接池的query()方法来执行SQL语句
+  pool.query(sql, [cid],(error, results) => {
+    if (error) throw error;
+    console.log(results)
+    if(results.affectedRows>0){
+      res.send({
+        message: '删除成功',
+        code: 1,
+      });
+    }else{
+      res.send({
+        message: '删除失败',
+        code: 0,
+      });
+    }
+    
+  });
+});
+
 
 //获取蛋糕首页详情的接口
 server.get('/index', (req, res) => {
