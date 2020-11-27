@@ -3,12 +3,12 @@
     <!-- 顶部选项卡开始 -->
     <mt-header title="美丽家蛋糕" fixed>
       <span slot="left">
-         <van-cell is-link @click="showPopup" class="details_address">配送至{{province}} {{city}}  {{country}}</van-cell>
+         <van-cell is-link @click="showPopup" class="details_address">到:{{province}} {{city}}  {{country}}</van-cell>
           <van-popup v-model="show" position="top" :style="{ height: '50%' }">
             <van-area :area-list="areaList" :columns-num="3" ref="myArea"
             @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
         </van-popup> 
-      </span>
+      </span> 
         <router-link to="/cakesearch" slot="right"><img src="../assets/sort/search.png" alt=""></router-link>
     </mt-header>
     <!-- 顶部选项卡结束 -->
@@ -181,7 +181,7 @@ export default {
       page:2,
       cakedetails:[],
       brand:[],
-      bannerImage:[],
+      bannerImage:[]
       
 				
     }
@@ -216,11 +216,19 @@ export default {
                 let val = picker.getValues();
                 return val;
       },
-			 showPopup() {
-         console.log("888")
+      showPopup() {
           this.show = true;
+          console.log("--------",this.show);
           this.overlay = true;
-      },
+      }
+			
   }
 }
 </script>
+<style scoped>
+    .details_address{
+      font-size: 10px;
+      color: #666;
+      height: 40px;
+    }
+</style>
