@@ -45,14 +45,11 @@
 			};
 		},
 		mounted() {
-			console.log("222222222")
-			console.log(localStorage.getItem("userinfo"))
-			if(localStorage.getItem("userinfo")===undefined){
+		 
+			if(localStorage.getItem("userInfo")===undefined ||localStorage.getItem("userInfo")==null ){
 				this.uname = "1234"
-			}else{ 
-			
-					this.uname = JSON.parse(localStorage.getItem("userinfo"))[0].uname;
-						console.log(this.uname);
+			}else{ 			 
+					this.uname = JSON.parse(localStorage.getItem("userInfo"))[0].uname;
 			}
 			 
 			 
@@ -60,16 +57,13 @@
 		sockets: {
 			// 接受图片
 			reciveImage(data) {
-					
 				if(!data.roomName){
 					roomname="";
 				}else{
-					console.log(typeof data);
-					console.log(data);
            var roomname = data.roomName;
 				}	
 				if (roomname!=this.uname) {
-					console.log("99999")
+				 
 					document.querySelector(".box-bd").innerHTML +=
 						`
 					 <div class="message-box" style="display: flex;align-items: center;justify-content: flex-end">
@@ -108,20 +102,20 @@
 			reciveMessgae(data) { //'chaTmessage'事件返回值
 				var content = document.getElementById("content");
 				content.innerHTML = ""
-				console.log("33333333"+this.uname)
+			 
 				var roomname = "";
-				console.log(data);
+			 
 				
 				if(!data.roomName){
 					roomname="";
 				}else{
-					console.log(typeof data);
-					console.log(data);
+			 
+				 
            var roomname = data.roomName;
 				}		
 				
 
-				console.log(data)
+			 
 				if (roomname!=this.uname) {
 					
 					document.querySelector(".box-bd").innerHTML +=
@@ -170,9 +164,9 @@
 				var file = thiss.files[0];
 				var fr = new FileReader();
 				fr.readAsDataURL(file);
-				console.log("333333333")
+			 
 				fr.onload = () => {
-					console.log(this.$socket)
+		 
 					this.$socket.emit('sendImage', {
 						username: "aaa",
 						avatar: "https://img.alicdn.com/bao/uploaded/i1/4165136336/O1CN011gMh9e1wfw5J12RXN_!!4165136336-0-lubanu-s.jpg",
@@ -190,7 +184,7 @@
 			// 发送消息
 			clickButton: function(e) {
 				var content = document.getElementById("content").innerHTML;
-				console.log(content);
+	 
 				if (!content.trim()) {
 					return;
 				}
