@@ -63,55 +63,47 @@ io.on('connection', socket => {
   })
 });
 // 购物列表
-server.get('/cake', (req, res) => {
-  // let id=req.query.id;
-  let sql = 'SELECT  * from cakes';
+
+server.get('/shopCake', (req, res) => {
+  // let cid = req.query.cid;
+  let sql = "SELECT * FROM cakes ORDER BY cid DESC";
   pool.query(sql, (error, results) => {
     if (error) throw error;
-    //console.log(results)
-    if (results.length > 0) {
-      res.send({
-        message: '查询成功',
-        code: 1,
-        cakeInfo: results[0]
-      });
-    } else {
-      res.send({
-        message: '查询失败',
-        code: 0
-      });
-    }
+    res.send({
+      message: '查询成功',
+      code: 1,
+      results: results
+    });
   })
 });
-
 //添加购物车
 server.get('/addcart', (req, res) => {
   let id = req.query.id;
   console.log(req.query.id);
   id=parseInt(id)
-  // let sql1 = "SELECT did,title,price,size,mini_pic from cake_details where did=?"
   let sql1 = "SELECT title,mini_pic,price,size,shape,ingredients,add_time FROM `cake_details` WHERE did =?"
   pool.query(sql1, [id], (error, results) => {
     if (error) throw error;
     if (results.length > 0) {
       console.log(results[0].count=1)
       console.log(results[0].checked=0)
-      let sql = "insert into cakes set ?"
-      console.log(results[0])
-      pool.query(sql, [results[0]], (err, result) => {
-        console.log(sql) 
-        console.log("-----",result);
-        // if (result.affectedRows > 0) {
-        //   res.send({
-        //     message: '添加成功',
-        //     code: 1
-        //   });
-        // } else {
-        //   res.send({
-        //     message: '添加失败',
-        //     code: 0
-        //   });
-        // }
+      var {title,mini_pic,price,size,shape,ingredients,add_time,count,checked}=results[0]
+      let sql = `INSERT INTO cakes(cid,cname,pic,price,size,shape,kinds,PD,count,checked) VALUES (${null},'${title}','${mini_pic}',${price},${size},'${shape}','${ingredients}','${add_time}',${count},${checked})`
+      console.log(sql)
+      pool.query(sql, (err, result) => {
+        if(err) throw err
+        console.log(result);
+        if (result.affectedRows > 0) {
+          res.send({
+            message: '添加成功',
+            code: 1
+          });
+        } else {
+          res.send({
+            message: '添加失败',
+            code: 0
+          });
+        }
       })
     }
 
@@ -334,16 +326,4 @@ server.get('/input', (req, res) => {
 });
 
 
-server.get('/shopCake', (req, res) => {
-  // let cid = req.query.cid;
-  let sql = "SELECT * FROM cakes";
-  pool.query(sql, (error, results) => {
-    if (error) throw error;
-    res.send({
-      message: '查询成功',
-      code: 1,
-      results: results
-    });
-  })
-});
 // 指定WEB服务器监听的端口

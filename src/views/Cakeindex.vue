@@ -3,12 +3,12 @@
     <!-- 顶部选项卡开始 -->
     <mt-header title="美丽家蛋糕" fixed>
       <span slot="left">
-         <van-cell is-link @click="showPopup" class="details_address">配送至{{province}} {{city}}  {{country}}</van-cell>
+         <van-cell is-link @click="showPopup" class="details_address"><span v-if="!province">选择地址:</span>{{province}} {{city}}  {{country}}</van-cell>
           <van-popup v-model="show" position="top" :style="{ height: '50%' }">
             <van-area :area-list="areaList" :columns-num="3" ref="myArea"
             @confirm="onConfirm" @cancel="onCancel"  @change="onChange" title="配送至"  />  
         </van-popup> 
-      </span>
+      </span> 
         <router-link to="/cakesearch" slot="right"><img src="../assets/sort/search.png" alt=""></router-link>
     </mt-header>
     <!-- 顶部选项卡结束 -->
@@ -144,7 +144,7 @@
     .cakeindex .flavor h1{font-size: 22px;}
     .cakeindex .flavor h1>a{font-size: 14px;margin-left: 52%;}
     .cakeindex .flavor>div{display: flex;margin-top: 20px;flex-wrap: wrap;}
-    .cakeindex .flavor>div>a{flex:0 0 44%;background: #eceeed url("../assets/img/006.jpg") no-repeat 100% 50%;background-size: 40%;padding: 25px 0 25px 15px;margin-bottom: 10px;}
+    .cakeindex .flavor>div>a{flex:0 0 44%;background: #eceeed url("../assets/img/006.jpg") no-repeat 97% 50%;background-size: 40%;padding: 25px 0 25px 14px;margin-bottom: 10px;}
     .cakeindex .flavor>div>a:nth-child(2){background-color: #fde3b5;margin-left: 10px;}
     .cakeindex .flavor>div>a:nth-child(3){background-color: #ffe7e8;}
     .cakeindex .flavor>div>a:nth-child(4){background-color: #d7e7f7;margin-left: 10px;}
@@ -218,11 +218,20 @@ export default {
                 let val = picker.getValues();
                 return val;
       },
-			 showPopup() {
-         console.log("888")
+      showPopup() {
           this.show = true;
+          console.log("--------",this.show);
           this.overlay = true;
-      },
+      }
+			
   }
 }
 </script>
+<style scoped>
+    .details_address{
+      font-size: 10px;
+      color: #666;
+      height: 40px;
+      width: 97px;
+    }
+</style>

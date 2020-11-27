@@ -11,9 +11,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   //个页面中共享的状态
   state: {
-    isLogined:localStorage.getItem("isLogined") ,
+    isLogined:localStorage.getItem("isLogined") || 0,
     //存储用户登录的信息
-    userInfo:JSON.parse(localStorage.getItem("userInfo")) 
+    userInfo:JSON.parse(localStorage.getItem("userInfo")) || {}
   },
   mutations: {
     logined_mutations(state,payload){
@@ -23,7 +23,10 @@ export default new Vuex.Store({
       //修改用户的登录信息
       state.userInfo=payload
     },
-   
+    logout_mutations(state){
+      state.isLogined=0;
+      state.userinfo={};
+     }
   },
   actions: {
     login_action(context,payload){ 
