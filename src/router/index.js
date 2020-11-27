@@ -79,7 +79,7 @@ const routes = [{
     path: '/cakesearch',
     component: cakesearch
   }, {
-    path: '/cakenofound',
+    path: '/cakenofound/:val',
     component: cakenofound
   }
 

@@ -23,7 +23,7 @@
         <!-- 选项卡开始 -->
         <!--id仅在此父元素组件内唯一即可，整个页面内id可不唯一，表示对应变量,vue中特有-->
         <div class="heji" >合计：¥{{this.$route.params.price}}</div>
-        <div class="jiesuan" ><router-link to="ok" class="jiesuana">去结算</router-link></div>       
+        <div class="jiesuan" ><router-link to="ok" class="jiesuana">结 算</router-link></div>       
     </div>
   </div>
 
@@ -64,6 +64,11 @@ export default {
   }
 </script>
 <style scoped>
+.mint-header{
+  background: #fff;
+  color: #ff6700;
+  font-size: 20px;
+}
 .href{
   text-decoration: none;
 }
