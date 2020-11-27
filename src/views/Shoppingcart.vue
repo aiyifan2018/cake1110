@@ -1,54 +1,58 @@
 <template>
   <div id="cate">
-    <mt-header title="购物车">
-      <router-link to="/" slot="left">
-        <mt-button icon="back"></mt-button>
-      </router-link>
-    </mt-header>
-    <div class="checkbox">
-      <input type="checkbox" v-model="checkAll" /> 全选
-    </div>
-    <div v-for="(cakeInfo, index) in cakeInfo" :key="index" class="main">
-      <div id="title">{{ cakeInfo.cname }}</div>
-      <div id="item">
-        <input type="checkbox" id="select" v-model="cakeInfo.checked" />
-        <span>
-          <img
-            class="img"
-            :src="require('../assets/picture/' + cakeInfo.pic)"
-          />
-        </span>
-        <span id="content">
-          <div>规格：{{ cakeInfo.size }}寸</div>
-          <div>数量:</div>
-          <div class="abc001">
-            <mt-button
-              @click="cakeInfo.count > 1 ? (cakeInfo.count -= 1) : 1"
-              class="abc002"
-              >-</mt-button
-            >
-            <span>{{ cakeInfo.count == 0 ? 1 : cakeInfo.count }}</span>
-            <mt-button @click="cakeInfo.count += 1" class="abc002">+</mt-button>
-          </div>
-          <p class="xiaoji">
-            <b>单价¥:</b>{{ cakeInfo.price }}&nbsp;&nbsp;&nbsp;
-          </p>
-          <p class="xiaoji">
-            <b>小计¥:</b>{{ (cakeInfo.count * cakeInfo.price).toFixed(2) }}
-          </p>
-        </span>
-        <button class="del" @click="del(cakeInfo.cid)">X</button>
+    <div id="cate_main">
+      <mt-header title="购物车">
+        <router-link to="/" slot="left">
+          <mt-button icon="back"></mt-button>
+        </router-link>
+      </mt-header>
+      <div class="checkbox">
+        <input type="checkbox" v-model="checkAll" /> 全选
       </div>
-      <hr width="95%" />
+      <div v-for="(cakeInfo, index) in cakeInfo" :key="index" class="main">
+        <div id="title">{{ cakeInfo.cname }}</div>
+        <div id="item">
+          <input type="checkbox" id="select" v-model="cakeInfo.checked" />
+          <span>
+            <img
+              class="img"
+              :src="require('../assets/picture/' + cakeInfo.pic)"
+            />
+          </span>
+          <span id="content">
+            <div>规格：{{ cakeInfo.size }}寸</div>
+            <div>数量:</div>
+            <div class="abc001">
+              <mt-button
+                @click="cakeInfo.count > 1 ? (cakeInfo.count -= 1) : 1"
+                class="abc002"
+                >-</mt-button
+              >
+              <span>{{ cakeInfo.count == 0 ? 1 : cakeInfo.count }}</span>
+              <mt-button @click="cakeInfo.count += 1" class="abc002"
+                >+</mt-button
+              >
+            </div>
+            <p class="xiaoji">
+              <b>单价¥:</b>{{ cakeInfo.price }}&nbsp;&nbsp;&nbsp;
+            </p>
+            <p class="xiaoji">
+              <b>小计¥:</b>{{ (cakeInfo.count * cakeInfo.price).toFixed(2) }}
+            </p>
+          </span>
+          <button class="del" @click="del(cakeInfo.cid)">X</button>
+        </div>
+        <hr width="95%" />
+      </div>
     </div>
     <div class="bottom-bar">
-      <div class="heji">合计：¥{{ sumPrice.toFixed(2) }}</div>
-      <div class="jiesuan"><div class="href" @click="pay">去结算</div></div>
+      <span class="heji">合计：¥{{ sumPrice.toFixed(2) }} </span> &nbsp;&nbsp;
+      <span class="jiesuan" @click="pay(sumPrice.toFixed(2))"> 结 算</span>
     </div>
   </div>
 </template>
 <script>
-import { Toast,Dialog } from 'vant';
+import { Toast, Dialog } from "vant";
 export default {
   data() {
     return {
@@ -57,34 +61,38 @@ export default {
     };
   },
   components: {
-    [Dialog.name]: Dialog
+    [Dialog.name]: Dialog,
   },
   methods: {
-    pay() {
-      this.$router.push({ name: "Pay", params: { price: this.heji } });
+    pay(price) {
+      this.$router.push({ name: "Pay", params: { price:price} });
     },
     del(index) {
       Dialog.confirm({
         title: "提示",
-        message: "是否确定删除商品?"
-      }).then(() => {
-          this.axios.get("/del?cid="+index).then((res) => {
-            console.log(res.data.code)
-          if(res.data.code==1){
-            Toast(res.data.message)
-            this.cartList()
-          }else{
-             Toast(res.data.message)
-          }
+        message: "是否确定删除商品?",
+      })
+        .then(() => {
+          this.axios.get("/del?cid=" + index).then((res) => {
+            console.log(res.data.code);
+            if (res.data.code == 1) {
+              Toast(res.data.message);
+              this.cartList();
+            } else {
+              Toast(res.data.message);
+            }
+          });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        }).catch((err) => {console.log(err)});
     },
-    cartList(){
-       this.axios.get("/shopCake").then((res) => {
-      this.cakeInfo = res.data.results;
-      console.log(this.cakeInfo);
-    });
-    }
+    cartList() {
+      this.axios.get("/shopCake").then((res) => {
+        this.cakeInfo = res.data.results;
+        console.log(this.cakeInfo);
+      });
+    },
   },
   computed: {
     checkAll: {
@@ -112,13 +120,23 @@ export default {
     },
   },
   mounted() {
-   this.cartList()
+    this.cartList();
   },
 };
 </script>
 <style scoped>
+.mint-header{
+  background: #fff;
+  color: #ff6700;
+  font-size: 20px;
+}
 #cate {
   width: 100%;
+  position: relative;
+}
+#cate_main{
+  height: 580px;
+  overflow-y:auto;
 }
 .main {
   width: 100%;
@@ -139,13 +157,14 @@ export default {
 }
 .heji {
   background: #e8e8e8;
-  display: block;
+  display: inline-block;
   padding: 10px;
   font-size: 20px;
-  width: 100%;
+  margin-left: 45px;
+  color: #666;
 }
 .jiesuan {
-  display: block;
+  display: inline-block;
   font-size: 20px;
   background-color: green;
   border-radius: 5px;
@@ -153,7 +172,6 @@ export default {
   width: 30%;
   text-align: center;
   color: #fff;
-  margin: 10px auto;
 }
 .abc001 {
   text-align: center;
@@ -172,6 +190,13 @@ export default {
   margin-top: 55px;
   margin-right: 5px;
   z-index: 1000;
+}
+.bottom-bar {
+  position: fixed;
+  bottom: 5px;
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
 }
 .abc002 {
   background-color: #e8e8e8;

@@ -12,7 +12,7 @@
     </div>
     <div>
         <p class="datacom">选择送达时间：
-        <input type="date" placeholder="请输入送达时间" ></p>
+        <input type="datetime-local" placeholder="请输入送达时间" ></p>
        <!-- <mt-field  placeholder="请输入" type="date" v-model="day">
             <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
         </mt-field> -->

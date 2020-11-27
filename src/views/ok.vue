@@ -40,10 +40,12 @@ export default {
 }
 .btn {
   position: absolute;
+  border: none;
   width: 100px;
   height: 30px;
   top: 240px;
   left: 140px;
+  padding: 2px;
   background-color: rgb(3, 170, 236);
   color: white;
 }
@@ -51,6 +53,6 @@ export default {
   margin: 10px;
   position: absolute;
   top: 280px;
-  left: 126px;
+  left: 137px;
 }
 </style>

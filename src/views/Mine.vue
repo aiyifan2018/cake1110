@@ -76,9 +76,54 @@
         </router-link>
       </li>
     </ul>
+    <!-- 底部选项卡开始 -->
+    <mt-tabbar fixed class="myTabbar" v-model="select">
+      <mt-tab-item id="index">
+        <img
+          src="../assets/icon/index2.png"
+          slot="icon"
+          v-if="select == 'index'"
+        />
+        <img src="../assets/icon/index1.png" slot="icon" v-else />
+        <router-link to="/">首页</router-link>
+      </mt-tab-item>
+      <mt-tab-item id="sort">
+        <img
+          src="../assets/icon/sort2.png"
+          slot="icon"
+          v-if="select == 'sort'"
+        />
+        <img src="../assets/icon/sort1.png" slot="icon" v-else />
+        <router-link to="/cakesort">分类</router-link>
+      </mt-tab-item>
+      <mt-tab-item id="shopping">
+        <img
+          src="../assets/icon/shopping2.png"
+          slot="icon"
+          v-if="select == 'shopping'"
+        />
+        <img src="../assets/icon/shopping1.png" slot="icon" v-else />
+        <router-link to="/shoppingcart">购物车</router-link>
+      </mt-tab-item>
+      <mt-tab-item id="mine">
+        <img src="../assets/icon/me2.png" slot="icon" v-if="select == 'mine'" />
+        <img src="../assets/icon/me1.png" slot="icon" v-else />
+        <router-link to="/mine">我的</router-link>
+      </mt-tab-item>
+    </mt-tabbar>
   </div>
 </template>
 <style scoped>
+/* 底部选项卡的样式 */
+.myTabbar .mint-tabbar {
+  background-color: #eaeaea;
+}
+.myTabbar a {
+  color: #8a8a8a;
+}
+.myTabbar.mint-tabbar > .mint-tab-item.is-selected a {
+  color: #ff6700 im !important; 
+}
 a{
   text-decoration: none;
   color: #000 !important;
@@ -161,9 +206,9 @@ a{
 </style>
 <script>
 export default {
-  data(){
-    return {
-
+   data(){
+    return{
+      select:"mine",
     }
   },
   methods:{

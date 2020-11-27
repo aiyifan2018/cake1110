@@ -11,6 +11,7 @@ import SocketIO from 'socket.io-client';
 console.log(vuesocketio)
 Vue.use(new vuesocketio({ 
 	debug: true,
+	// connection: SocketIO('http://myhomecake.applinzi.com', {
 	connection: SocketIO('http://127.0.0.1:3000', {
 		transports: ['websocket', 'polling', 'flashsocket']
 	})
@@ -28,6 +29,7 @@ Vue.use(Vant)
 
 
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
+// axios.defaults.baseURL = 'http://myhomecake.applinzi.com'
 Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false

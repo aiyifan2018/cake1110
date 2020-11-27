@@ -3,7 +3,6 @@ const express = require('express');
 
 //加载MD5模块
 const md5 = require('md5');
-const qs = require('qs')
 // 加载CORS模块
 const cors = require('cors');
 
@@ -47,13 +46,10 @@ server.use(bodyParser.urlencoded({
 var http = require('http').createServer(server);
 var io = require('socket.io')(http);
 http.listen(3000, function () {
-  console.log("9999999999")
 });
 // socket业务逻辑
 io.on('connection', socket => {
-  console.log("11111111111");
   socket.on('sendMessage', data => {
-    console.log("22222");
     io.emit('reciveMessgae', data)
   })
   // 群发图片
@@ -81,26 +77,22 @@ server.get('/addcart', (req, res) => {
   let id = req.query.id;
   console.log(req.query.id);
   id=parseInt(id)
-  let sql1 = "SELECT title,mini_pic,price,size,shape,ingredients,add_time FROM `cake_details` WHERE did =?"
+  let sql1 = "SELECT dname,mini_pic,price,size,shape,ingredients,add_time FROM `cake_details` WHERE did =?"
   pool.query(sql1, [id], (error, results) => {
     if (error) throw error;
     if (results.length > 0) {
       console.log(results[0].count=1)
       console.log(results[0].checked=0)
-      var {title,mini_pic,price,size,shape,ingredients,add_time,count,checked}=results[0]
-      let sql = `INSERT INTO cakes(cid,cname,pic,price,size,shape,kinds,PD,count,checked) VALUES (${null},'${title}','${mini_pic}',${price},${size},'${shape}','${ingredients}','${add_time}',${count},${checked})`
+      var {dname,mini_pic,price,size,shape,ingredients,add_time,count,checked}=results[0]
+      let sql = `INSERT INTO cakes(cid,cname,pic,price,size,shape,kinds,PD,count,checked) VALUES (${null},'${dname}','${mini_pic}',${price},${size},'${shape}','${ingredients}','${add_time}',${count},${checked})`
       console.log(sql)
       pool.query(sql, (err, result) => {
         if(err) throw err
         console.log(result);
         if (result.affectedRows > 0) {
-          res.send({
-            message: '添加成功',
-            code: 1
-          });
+          res.send({ message: '添加成功',  code: 1  });
         } else {
-          res.send({
-            message: '添加失败',
+          res.send({ message: '添加失败',
             code: 0
           });
         }
