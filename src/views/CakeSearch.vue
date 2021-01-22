@@ -56,20 +56,24 @@ export default {
     kwsearch(event){
       if(event.keyCode==13){
         // 获取输入的关键字
-        let value=this.value;
-        // 向数据库发送请求
-        this.axios.get("/search?kw="+value).then(res=>{
-          let data=res.data.results;
-          // 判断，成功跳转到成功页面
-          if(data.length>0){
-            this.$router.push({path: '/cakelist/'+value});
-          }else{
-            this.$router.push({path:'/cakenofound'});
-          }
-        });
-        console.log("向数据库传参kw="+value);
-        // 将输入的关键字放到历史搜索栏里
-        this.values.push(value);
+        let value=this.value.trim();
+        if(value.length>0){
+          // 向数据库发送请求
+          this.axios.get("/search?kw="+value).then(res=>{
+            let data=res.data.results;
+            // 判断，成功跳转到成功页面
+            if(data.length>0){
+              this.$router.push({path: '/cakelist/'+value});
+            }else{
+              this.$router.push({path:'/cakenofound/'+value});
+            }
+          });
+          // 将输入的关键字放到历史搜索栏里
+          this.values.push(value);
+        }else{
+          this.value="全部";
+          this.$router.push({path: '/cakelist/'+this.value});
+        }
       }
     }
   },

@@ -16,10 +16,10 @@
         </router-link></li>
         <li><router-link to="/">关于用户协议与隐私政策</router-link></li>
       </ul>
-      <routerr-link to="/login">
+      <router-link to="/login">
          <button  @click="logout">退出</button>
-      </routerr-link>
-     
+      </router-link>
+        
     </div>
     <div v-else>
       <ul>

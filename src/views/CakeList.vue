@@ -5,7 +5,6 @@
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
-      <div slot="right">北京东城区</div>
     </mt-header>
     <!-- 顶部导航栏结束 -->
     <!-- 顶部选项卡开始 -->
@@ -37,7 +36,7 @@
 </template>
 <style>
   /* 顶部导航栏的背景色和下边框 */
-  .cakelist .mint-header{background-color: #f6f6f6;color: #000;border-bottom:1px solid #d8d8d8;}
+  .cakelist .mint-header{background-color: #f6f6f6;color: #ff6700;border-bottom:1px solid #d8d8d8; font-size: 20px;}
   /* 顶部选项卡的样式 */
   .cakelist .mint-navbar{background-color: #f6f6f6;margin-top: 40px;}
   .cakelist .mint-navbar .mint-tab-item.is-selected{color: #ff6700;border-bottom: none;}

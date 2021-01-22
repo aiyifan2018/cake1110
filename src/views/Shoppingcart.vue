@@ -65,7 +65,11 @@ export default {
   },
   methods: {
     pay(price) {
-      this.$router.push({ name: "Pay", params: { price:price} });
+      if(price>0){
+        this.$router.push({ name: "Pay", params: { price:price} });
+      }else{
+        Toast("请选择你要购买的蛋糕");
+      }
     },
     del(index) {
       Dialog.confirm({
@@ -220,7 +224,7 @@ export default {
 }
 #content > div,
 #content > p {
-  padding: 5px;
+  padding: 5px 0;
   width: 87px;
 }
 .img {
