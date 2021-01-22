@@ -11,11 +11,18 @@
     <!-- 上部轮播图开始 -->
     <div class="details_cake">
       <mt-swipe :show-indicators="false">
+<<<<<<< HEAD
         <mt-swipe-item v-if="category.mini_pic">
           <!-- <img src="../assets/img/006.jpg" alt=""/> -->
           <img :src="require('../assets/img/' + category.mini_pic)" alt="" />
         </mt-swipe-item>
         <!-- <mt-swipe-item
+=======
+        <mt-swipe-item
+          ><img src="../assets/img/006.jpg" alt=""
+        /></mt-swipe-item>
+        <mt-swipe-item
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
           ><img src="../assets/img/007.jpg" alt=""
         /></mt-swipe-item>
         <mt-swipe-item
@@ -23,7 +30,11 @@
         /></mt-swipe-item>
         <mt-swipe-item
           ><img src="../assets/img/008.jpg" alt=""
+<<<<<<< HEAD
         /></mt-swipe-item> -->
+=======
+        /></mt-swipe-item>
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
       </mt-swipe>
     </div>
     <!-- 下部详情 -->
@@ -224,6 +235,7 @@
                   background-image: url('../../src/assets/picture/041.jpg');
                 "
               ></div>
+<<<<<<< HEAD
             </div>
             <div class="comments-item-address">
               <i class="iconfont iconfont-address"></i>广东深圳市宝安区
@@ -235,6 +247,19 @@
             <a href="" title="查看更多评价">查看更多评价</a>
           </div>
         </div>
+=======
+            </div>
+            <div class="comments-item-address">
+              <i class="iconfont iconfont-address"></i>广东深圳市宝安区
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer">
+          <div class="comments-more">
+            <a href="" title="查看更多评价">查看更多评价</a>
+          </div>
+        </div>
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
       </section>
     </div>
     <!--   实验代码结束 -->
@@ -258,9 +283,12 @@
         />
       </van-goods-action>
     </div>
+<<<<<<< HEAD
     <div id="tishi">
       请先登录:{{dateTime}} 跳转登录
     </div>
+=======
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
   </div>
 </template>
 <script>
@@ -284,7 +312,10 @@ export default {
       category: [],
       series: {},
       active: false,
+<<<<<<< HEAD
       dateTime:3
+=======
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
     };
   },
   mounted() {
@@ -303,6 +334,7 @@ export default {
   },
   methods: {
     onClickBigBtn() {
+<<<<<<< HEAD
       if (this.$store.state.isLogined == 1) {
         let id = this.$route.params.id;
         this.axios.get("/addcart?id=" + id).then((res) => {
@@ -325,6 +357,18 @@ export default {
           }
         }, 1000);
       }
+=======
+      let id = this.$route.params.id;
+      this.axios.get("/addcart?id=" + id).then((res) => {
+        let cart = res.data;
+        console.log(cart);
+        if (cart.code == 1) {
+          Toast(cart.message);
+        } else {
+          Toast(cart.message);
+        }
+      });
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
     },
 
     showSize(e, item) {
@@ -384,6 +428,7 @@ export default {
 };
 </script>
 <style scoped>
+<<<<<<< HEAD
 #tishi{
   width: 100%;
   color: #fff;
@@ -396,6 +441,8 @@ export default {
   text-align: center;
   display: none;
 }
+=======
+>>>>>>> dee3d4c686057165fd43cef6bc800fd701f759c0
 .active {
   background-color: red !important;
 }
